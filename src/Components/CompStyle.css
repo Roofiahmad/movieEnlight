@@ -1,10 +1,9 @@
-.navreally-light {
-    background-color: white;
+.body {
+    background-color: black;
 }
 
-.buttonreally-light {
-    background-color: white;
-    border: none;
+.navreally-dark {
+    background-color: black;
 }
 
 .buttonreally-light:hover {

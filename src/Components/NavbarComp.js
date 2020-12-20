@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import styles from './CompStyle.css';
+import './CompStyle.css';
 import {
   Input,
   Container,
@@ -16,7 +16,9 @@ import {
   DropdownItem,
   NavbarText,
   InputGroup,
-  InputGroupAddon
+  InputGroupAddon,
+  Form,
+  Label
 } from 'reactstrap';
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
@@ -34,11 +36,11 @@ const NavbarComp = (props) => {
   } = props;
 
   return (
-    <div>
+    <div className="body">
       <Container>
-      <Navbar className="navreally-light" light expand="md">
-        <NavbarBrand className="" href="/">MilanTV</NavbarBrand>
-        <NavbarToggler onClick={toggle} />
+      <Navbar className="navreally-dark" dark expand="md">
+        <NavbarBrand style={{color: "#FFC200"}} href="/">MilanTV</NavbarBrand>
+        <NavbarToggler style={{color: "#FFC200"}} onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
           <br/>
           <Nav className="mr-auto" navbar>
@@ -47,28 +49,43 @@ const NavbarComp = (props) => {
                 <InputGroup>
                   <Input className="searchForm" type="input" placeholder="search movie"></Input>
                   <InputGroupAddon addonType="append">
-                    <Button style={{backgroundColor: '#FE024E'}}><i className="fa fa-search"></i></Button>
+                    <Button style={{backgroundColor: "#FFC200"}}><i className="fa fa-search"></i></Button>
                   </InputGroupAddon>
                 </InputGroup>
               </div>
               <NavLink>
-                <div className="col-md">
-                  <Button color="light" className="buttonreally-light" onClick={toggleModal}>Sign In</Button> <span/>
-                  <Button color="light" className="buttonreally-light" onClick={toggleModal}>Sign Up</Button>
-                </div>
+                  <Button style={{backgroundColor: "#FFC200"}} className="buttonreally-light" onClick={toggleModal}>Sign In</Button> <span/>
+                  <Button style={{backgroundColor: "#FFC200"}} className="buttonreally-light" onClick={toggleModal}>Sign Up</Button>
               </NavLink>
           </Collapse>
       </Navbar>
       </Container>
       <Modal isOpen={modal} toggleModal={toggleModal} className={className}>
-        <ModalHeader style={{textAlign: 'center'}} toggleModal={toggleModal}>Modal title</ModalHeader>
         <ModalBody>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+          <Container style={{textAlign: "right"}}>
+            <Button style={{backgroundColor: "#FFC200", border: "none"}} onClick={toggleModal}>X</Button>
+          </Container>
+          <Container>
+            <hr/>
+            <Form>
+              <Label>Full Name</Label>
+              <Input type="text" placeholder=""></Input>
+              <br/>
+              <Label>Email</Label>
+              <Input type="text" placeholder=""></Input>
+              <br/>
+              <Label>Password</Label>
+              <Input type="password" placeholder=""></Input>
+              <br/>
+              <Label>Confirm Password</Label>
+              <Input type="password" placeholder=""></Input>
+              <br/>
+              <Container style={{textAlign: "center"}}>
+                <Button style={{backgroundColor: "#FFC200", border: "none"}}>Sign In</Button>
+              </Container>
+            </Form>
+          </Container>
         </ModalBody>
-        <ModalFooter>
-          <Button color="primary" onClick={toggleModal}>Do Something</Button>{' '}
-          <Button color="secondary" onClick={toggleModal}>Cancel</Button>
-        </ModalFooter>
       </Modal>
     </div>
   );
