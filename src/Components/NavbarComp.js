@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './CompStyle.css';
+import './NavbarComp.css';
 import {
   Input,
   Container,
