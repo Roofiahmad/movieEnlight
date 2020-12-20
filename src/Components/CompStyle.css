@@ -1,7 +1,30 @@
-.really-light {
-    background-color: white;
+.body {
+    background-color: black;
+}
+
+.navreally-dark {
+    background-color: black;
+}
+
+.buttonreally-light:hover {
+    background-color: whitesmoke;
+    border: none;
 }
 
 .text-link:hover {
     cursor: pointer;
+}
+
+.searchForm {
+    width: 300px;
+    border-radius: 5px;
+    border-color: whitesmoke;
+}
+
+
+/* tampilan device */
+@media only screen and (max-width: 480px) {
+    .searchForm {
+        width: 100%;
+    }
 }
