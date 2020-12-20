@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import './CompStyle.css';
+import './NavbarComp.css';
 import {
   Input,
   Container,
@@ -27,7 +27,7 @@ const NavbarComp = (props) => {
 
   return (
     <div>
-      <Container>
+      <Container className="position-absolute">
       <Navbar className="really-light" light expand="md">
         <NavbarBrand href="/">MovieApp</NavbarBrand>
           <Nav className="mr-auto" navbar>

@@ -1,10 +1,13 @@
 import React from 'react';
+import './App.css';
 import NavbarComp from './Components/NavbarComp';
+import FooterComp from './Components/FooterComp';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'; 
 import Review from './Pages/Review';
 import Overview from './Pages/Overview';
 import Characters from './Pages/Characters';
 import Home from './Pages/Home';
+
 
 function App() {
   return (
@@ -17,6 +20,7 @@ function App() {
           <Route exact path="/characters" component={Characters}/>
           <Route exact path="/review" component={Review}/>
         </Switch>
+      <FooterComp />
     </div>
     </Router>
   );
