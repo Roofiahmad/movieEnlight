@@ -27,7 +27,7 @@ const NavbarComp = (props) => {
 
   return (
     <div>
-      <Container className="position-absolute">
+      <Container>
       <Navbar className="really-light" light expand="md">
         <NavbarBrand href="/">MovieApp</NavbarBrand>
           <Nav className="mr-auto" navbar>

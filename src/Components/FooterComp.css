@@ -2,14 +2,13 @@
   position: absolute;
   bottom: 0;
   width: 100%;
-  height: auto;
   background-color: #000000;
 }
 
 .title {
   font-weight: 500;
-  font-size: 30px;
-  margin-top: 10px;
+  font-size: 40px;
+  margin-top: 5px;
 }
 
 .roww {
@@ -19,15 +18,19 @@
   margin-top: 40px;
 }
 
+img:hover {
+  opacity: 0.9;
+}
+
 .about {
   flex: 40%;
-  margin-right: 50px;
-  margin-bottom: 40px;
+  margin-right: 80px;
+  margin-bottom: 20px;
 }
 
 .info {
-  flex: 15%;
-  margin-bottom: 40px;
+  flex: 13%;
+  margin-right: 30px;
 }
 
 ul {
@@ -40,8 +43,8 @@ li {
 }
 
 .social {
-  flex: 40%;
-  margin-bottom: 40px;
+  flex: 25%;
+  min-height: 200px;
 }
 
 

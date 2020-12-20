@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import './FooterComp.css';
 import googlePlay from '../Assets/googlePlay.png';
 import appStore from '../Assets/appStore.png';
-import logo from '../Assets/logo.png';
+import logo2 from '../Assets/logo2.png';
 import facebook from '../Assets/facebook.png'
 import pinterest from '../Assets/pinterest.png'
 import instagram from '../Assets/instagram.png'
@@ -16,7 +16,7 @@ class FooterComp extends Component {
           <div className="roww">
             <div className="about">
               <Link className="d-flex navbar-brand text-white mb-3" to="/">
-                <img src={logo} alt="MilanTV" height="60" className="d-inline-block mr-2 align-middle" />
+                <img src={logo2} alt="MilanTV" height="60" className="d-inline-block mr-2 align-middle" />
             <h4 className="title">MilanTV</h4>
           </Link>
               <p className="lh-sm text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, quas atque nisi earum qui eaque ipsa odit autem corporis facilis aliquam voluptatibus dicta architecto reiciendis excepturi deleniti inventore repellat ex.</p>
@@ -43,11 +43,11 @@ class FooterComp extends Component {
             <div className="social">
               <div className="mb-4">
                 <p className="text-white">Download</p>
-                <Link className="mr-3" to="/">
-                  <img src={googlePlay} alt="" width="140" className="d-inline-block mr-1" />
+                <Link to="/">
+                  <img src={googlePlay} alt="" width="140" className="d-inline-block mr-2 pb-2" />
                 </Link>
-                <Link className="" to="/">
-                  <img src={appStore} alt="" width="140" className="d-inline-block mr-1" />
+                <Link to="/">
+                  <img src={appStore} alt="" width="140" className="d-inline-block pb-2" />
                 </Link>
               </div>
               <p className="text-white">Social Media</p>
@@ -62,7 +62,7 @@ class FooterComp extends Component {
               </Link>
             </div>
             </div>
-            <hr style={{backgroundColor:"white"}} />
+            <hr style={{backgroundColor:"white" }} />
             <p className="text-white text-center">Copyright &copy; 2020 MilanTV. All Rights Reserved</p>
           </div>
       </footer >
