@@ -5,6 +5,7 @@ import Review from './Pages/Review';
 import Overview from './Pages/Overview';
 import Characters from './Pages/Characters';
 import Home from './Pages/Home';
+import Carousels from './Components/Carousel';
 
 function App() {
   return (

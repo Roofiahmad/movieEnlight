@@ -11,6 +11,15 @@
     border: none;
 }
 
+.btn-yellow {
+    background-color: #FFC200;
+    border: none;
+    border-radius: 10px;
+    width: 400px;
+    height: 30px;
+    color: white;
+}
+
 .text-link:hover {
     cursor: pointer;
 }
@@ -26,5 +35,9 @@
 @media only screen and (max-width: 480px) {
     .searchForm {
         width: 100%;
+    }
+
+    .btn-yellow {
+        width: 200px;
     }
 }
