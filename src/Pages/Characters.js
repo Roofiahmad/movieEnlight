@@ -2,6 +2,7 @@ import React from "react";
 import Banner from "../Components/Banner";
 import DetailButton from "../Components/DetailButton";
 import FilmCard from "../Components/FilmCard";
+import FooterComp from "../Components/FooterComp";
 function Characters() {
   const image_size = { width: "200px", height: "200px", borderRadius: "10px" };
   const characterList = [
@@ -86,6 +87,7 @@ function Characters() {
       <Banner />
       <DetailButton />
       <FilmCard list={characterList} image_size={image_size} />
+      <FooterComp />
     </div>
   );
 }

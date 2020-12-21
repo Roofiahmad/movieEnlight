@@ -1,12 +1,15 @@
 import React from "react";
 import FilmCategory from "../Components/FilmCategory";
+import FooterComp from "../Components/FooterComp";
+import PaginationComp from "../Components/PaginationComp";
+import Carousels from "../Components/Carousel";
 function Home() {
   return (
     <div className="App">
-<<<<<<< HEAD
+      <Carousels />
       <FilmCategory />
-=======
->>>>>>> 106ea4ccc3833d13794bff06d159be006c053e55
+      <PaginationComp />
+      <FooterComp />
     </div>
   );
 }
