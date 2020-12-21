@@ -1,0 +1,48 @@
+.really-light {
+    background-color: white;
+    position: fixed;
+}
+.body {
+    background-color: black;
+}
+
+.navreally-dark {
+    background-color: black;
+}
+
+.buttonreally-light:hover {
+    background-color: whitesmoke;
+    border: none;
+}
+
+.btn-yellow {
+    background-color: #FFC200;
+    border: none;
+    border-radius: 10px;
+    width: 400px;
+    height: 30px;
+    color: white;
+
+}
+
+.text-link:hover {
+    cursor: pointer;
+}
+
+.searchForm {
+    width: 300px;
+    border-radius: 5px;
+    border-color: whitesmoke;
+}
+
+
+/* tampilan device */
+@media only screen and (max-width: 480px) {
+    .searchForm {
+        width: 100%;
+    }
+
+    .btn-yellow {
+        width: 200px;
+    }
+}
