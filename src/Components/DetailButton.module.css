@@ -1,0 +1,24 @@
+.detail_btn_container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 10px 0;
+}
+.detail_btn {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  overflow: hidden;
+  margin: 5px;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #000;
+  border: solid 2px #fff;
+  border-radius: 5px;
+}
+
+.detail_btn:focus {
+  outline: none;
+  color: #fff;
+  background-color: #ffc200;
+}
