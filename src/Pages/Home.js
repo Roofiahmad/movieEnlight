@@ -1,9 +1,9 @@
-import React from 'react';
-
+import React from "react";
+import FilmCategory from "../Components/FilmCategory";
 function Home() {
   return (
     <div className="App">
-        Ini page Home
+      <FilmCategory />
     </div>
   );
 }
