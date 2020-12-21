@@ -32,6 +32,8 @@ const NavbarComp = (props) => {
   const toggleSignup = () => setModal(!modal);
   const toggleSignin = () => setModals(!modals);
 
+  
+
   const {
     buttonLabel,
     className
@@ -87,7 +89,7 @@ const NavbarComp = (props) => {
               <br/>
               <Container style={{textAlign: "center"}}>
                 <button className="btn-yellow">Sign Up</button> <br/>
-                <small className="text-muted">Already have an account? <a href="">Sign In</a></small>
+                <small className="text-muted">Already have an account? <a className="a" onClick={toggleSignin} >Sign In</a></small>
               </Container>
             </Form>
           </Container>
@@ -114,7 +116,7 @@ const NavbarComp = (props) => {
               <br/>
               <Container style={{textAlign: "center"}}>
                 <button className="btn-yellow">Sign In</button> <br/>
-                <small className="text-muted">Don't have any account? <a href="">Sign Up</a></small>
+                <small className="text-muted">Don't have any account? <a className="a" onClick={toggleSignup}>Sign Up</a></small>
               </Container>
             </Form>
           </Container>

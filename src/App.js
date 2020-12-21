@@ -14,8 +14,9 @@ import Carousels from './Components/Carousel';
 function App() {
   return (
     <Router>
-    <div className="App">
+    <div className="Caro">
       <NavbarComp/>
+      <Carousels/>
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route exact path="/overview" component={Overview}/>
