@@ -1,0 +1,92 @@
+.banner_container {
+  background-image: linear-gradient(rgba(7, 7, 7, 0.6), rgba(7, 7, 7, 0.6)),
+    url(../Assets/saint-seiya-banner\ 1.png);
+  background-size: cover;
+  height: 70vh;
+  background-position: top;
+  color: white;
+}
+.banner_title {
+  text-transform: uppercase;
+  font-size: 2.5rem;
+  font-weight: 900;
+}
+.content_banner_container {
+  position: relative;
+  width: 40%;
+  left: 10vw;
+  top: 50px;
+}
+
+.banner_description {
+  font-size: 1.3rem;
+  font-weight: 700;
+}
+
+.banner_btn {
+  background-color: transparent;
+  background-repeat: no-repeat;
+  cursor: pointer;
+  overflow: hidden;
+  margin: 5px;
+  padding: 10px;
+  font-weight: bold;
+  font-size: 1.2rem;
+  color: #fff;
+  border: solid 2px #fff;
+  border-radius: 5px;
+}
+
+.banner_btn:focus,
+.banner_btn:hover {
+  outline: none;
+  color: #fff;
+  background-color: #ffc200;
+}
+
+.rate_reviews {
+  margin-top: -5vh;
+  position: relative;
+  display: flex;
+  align-content: flex-end;
+}
+
+i {
+  font-size: 2.2vw;
+}
+
+.rate_reviews span {
+  margin-left: 10px;
+  position: relative;
+  top: 0.5vh;
+  color: #fff;
+  font-size: 1.9vw;
+}
+
+@media (max-width: 480px) {
+  .content_banner_container {
+    width: 60%;
+  }
+  .banner_title {
+    font-size: 2rem;
+  }
+
+  .banner_btn {
+    width: 300px;
+    padding: 10px;
+  }
+  .banner_btn_container {
+    display: flex;
+  }
+
+  .banner_description {
+    font-weight: 400;
+    font-size: 1rem;
+  }
+  .rate_reviews i {
+    font-size: 1.8rem;
+  }
+  .rate_reviews span {
+    font-size: 1rem;
+  }
+}
