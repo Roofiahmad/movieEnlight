@@ -16,8 +16,10 @@ export default function Banner() {
           inventore eius quae perferendis vel doloremque amet odio animi minus
           architecto corrupti fuga!
         </p>
-        <button className={classCss.banner_btn}>Watch Trailer</button>
-        <button className={classCss.banner_btn}>Add to Watchlist</button>
+        <div className={classCss.banner_btn_container}>
+          <button className={classCss.banner_btn}>Watch Trailer</button>
+          <button className={classCss.banner_btn}>Add to Watchlist</button>
+        </div>
       </div>
     </div>
   );
