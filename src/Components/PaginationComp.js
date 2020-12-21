@@ -1,10 +1,13 @@
 import React, { Component } from 'react';
 import './PaginationComp.css';
 import { Link } from 'react-router-dom';
+import { Container } from 'reactstrap';
 
 class PaginationComp extends Component {
   render() {
     return (
+      <Container>
+      <div className="container text-center">
       <nav aria-label="Page navigation">
         <ul className="pagination container w-25 justify-content-between">
           <li classNameName="page-item">
@@ -27,6 +30,8 @@ class PaginationComp extends Component {
           </li>
         </ul>
       </nav>
+      </div>
+      </Container>
     );
   }
 }
