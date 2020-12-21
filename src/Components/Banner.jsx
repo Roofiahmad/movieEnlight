@@ -1,5 +1,5 @@
 import React from "react";
-//import StarRatingComponent from "react-star-rating-component";
+// import StarRatingComponent from "react-star-rating-component";
 import classCss from "./Banner.module.css";
 export default function Banner() {
   return (
