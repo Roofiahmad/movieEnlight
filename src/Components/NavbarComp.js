@@ -62,8 +62,31 @@ const NavbarComp = (props) => {
                 </InputGroup>
               </div>
               <NavLink>
-                  <Button style={{backgroundColor: "#FFC200"}} className="buttonreally-light" onClick={toggleSignin}>Sign In</Button> <span/>
-                  <Button style={{backgroundColor: "#FFC200"}} className="buttonreally-light" onClick={toggleSignup}>Sign Up</Button>
+                  {/* <Button style={{backgroundColor: "#FFC200"}} className="buttonreally-light" onClick={toggleSignin}>Sign In</Button> <span/>
+                  <Button style={{backgroundColor: "#FFC200"}} className="buttonreally-light" onClick={toggleSignup}>Sign Up</Button> */}
+
+                  <UncontrolledDropdown nav inNavbar>
+                      <DropdownToggle nav>
+                        <img src="https://media-exp1.licdn.com/dms/image/C5603AQH19uFleJ5GTg/profile-displayphoto-shrink_100_100/0/1599416920232?e=1613001600&v=beta&t=YKWii72d55LG67y88694QtOKGNUG0ljJR7W3zGZGJPA" className="ava"></img>
+                      </DropdownToggle>
+                      <DropdownMenu right>
+                        <DropdownItem>
+                          <b>Jody Mantap</b>
+                        </DropdownItem>
+                        <DropdownItem>
+                          Profile
+                        </DropdownItem>
+                        <DropdownItem>
+                          Settings
+                        </DropdownItem>
+                        <DropdownItem>
+                          Help
+                        </DropdownItem>
+                        <DropdownItem>
+                          Sign Out
+                        </DropdownItem>
+                      </DropdownMenu>
+                  </UncontrolledDropdown>
               </NavLink>
           </Collapse>
       </Navbar>

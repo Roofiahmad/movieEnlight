@@ -1,5 +1,5 @@
 import React from "react";
-// import StarRatingComponent from "react-star-rating-component";
+import StarRatingComponent from "react-star-rating-component";
 import classCss from "./Banner.module.css";
 export default function Banner() {
   return (
@@ -7,7 +7,7 @@ export default function Banner() {
       <div className={classCss.content_banner_container}>
         <p className={classCss.banner_title}>saint seiya</p>
         <div className={classCss.rate_reviews}>
-          {/* <StarRatingComponent value={4} emptyStarColor={"#fff"} /> */}
+          <StarRatingComponent value={4} emptyStarColor={"#fff"} />
           <span>2200 reviews</span>
         </div>
         <p className={classCss.banner_description}>

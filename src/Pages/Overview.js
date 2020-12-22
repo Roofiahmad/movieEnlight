@@ -14,7 +14,7 @@ function Overview() {
     <div className="App">
       <NavbarComp/>
         <Switch>
-          <Route exact path="/" component={Home}/>
+          <Route exact path="/home" component={Home}/>
           <Route exact path="/overview" component={Overview}/>
           <Route exact path="/characters" component={Characters}/>
           <Route exact path="/review" component={Review}/>

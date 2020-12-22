@@ -18,6 +18,10 @@
   gap: 10px;
 }
 
+.avaReview {
+  border-radius: 10px;
+}
+
 @media (max-width: 480px) {
   .card_image {
     width: 160px;
