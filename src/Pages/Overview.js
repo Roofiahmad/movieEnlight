@@ -1,29 +1,35 @@
-import React from 'react';
-import NavbarComp from '../Components/NavbarComp';
-import FooterComp from '../Components/FooterComp';
-import PaginationComp from '../Components/PaginationComp';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'; 
-import Home from './Home';
-import Review from './Review';
-import Characters from './Characters';
+import { React, useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import classCss from "../Components/FilmCategory.module.css";
+import classCss2 from "../Components/FilmCard.module.css";
+import ReactStars from "react-rating-stars-component";
+import { Form, Input } from "reactstrap";
+import "./Review.css"
+import { Link } from "react-router-dom";
 
+export default function Overview() {
+    // const detailSelector = ["Overview", "Review"];
+    const ratingChanged = (newRating) => {
+      console.log(newRating);
+    };
 
-function Overview() {
   return (
-    <Router>
-    <div className="App">
-      <NavbarComp/>
-        <Switch>
-          <Route exact path="/home" component={Home}/>
-          <Route exact path="/overview" component={Overview}/>
-          <Route exact path="/characters" component={Characters}/>
-          <Route exact path="/review" component={Review}/>
-        </Switch>
-      <PaginationComp />
-      <FooterComp />
+    <div className="bg-black">
+      <div className={classCss.category_container}>
+        <div className={classCss.category_btn_container}>
+            <button className={classCss.category_btn}>
+              Overview
+            </button>
+            <Link to="/review">
+            <button className={classCss.category_btn}>
+              Review
+            </button>
+            </Link>
+        </div>
+        <div className={classCss2.card_container}>
+          Ini halaman Overview
+        </div>
+      </div>
     </div>
-    </Router>
   );
 }
-
-export default Overview;

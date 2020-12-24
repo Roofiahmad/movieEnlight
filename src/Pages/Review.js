@@ -5,9 +5,9 @@ import classCss2 from "../Components/FilmCard.module.css";
 import StarRatingComponent from "react-star-rating-component";
 import { Form, Input } from "reactstrap";
 import "./Review.css";
+import { Link } from "react-router-dom";
 
 export default function Review() {
-  const detailSelector = ["Overview", "Review"];
   const ratingChanged = (newRating) => {
     console.log(newRating);
   };
@@ -16,18 +16,10 @@ export default function Review() {
     <div className="bg-black">
       <div className={classCss.category_container}>
         <div className={classCss.category_btn_container}>
-          {detailSelector.map((data, index) => (
-            <button
-              className={classCss.category_btn}
-              key={index}
-              id={data}
-              onClick={(event) => {
-                console.log(event.target.id);
-              }}
-            >
-              {data}
-            </button>
-          ))}
+          <Link to="/filmdetails">
+            <button className={classCss.category_btn}>Overview</button>
+          </Link>
+          <button className={classCss.category_btn}>Review</button>
         </div>
         <div className={classCss2.card_container}>
           {/* Input */}
@@ -171,6 +163,12 @@ export default function Review() {
             </div>
           </div>
         </div>
+      </div>
+
+      <div className="container text-center">
+        <button className="load">
+          <b>load more</b>
+        </button>
       </div>
     </div>
   );

@@ -6,8 +6,7 @@ import Review from "./Pages/Review";
 import Overview from "./Pages/Overview";
 import Characters from "./Pages/Characters";
 import Home from "./Pages/Home";
-import UserDashboard from "./Pages/UserDashboard";
-import AdminDashboard from "./Pages/AdminDashboard";
+import FilmDetails from "./Pages/FilmDetails";
 
 function App() {
   return (
@@ -16,11 +15,8 @@ function App() {
         <NavbarComp />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/overview" component={Overview} />
+          <Route exact path="/filmdetails" component={FilmDetails} />
           <Route exact path="/characters" component={Characters} />
-          <Route exact path="/review" component={Review} />
-          <Route exact path="/user" component={UserDashboard} />
-          <Route exact path="/admin" component={AdminDashboard} />
         </Switch>
       </div>
     </Router>
