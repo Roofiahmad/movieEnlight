@@ -12,6 +12,53 @@ import {
 import classCss from "./AdminDashboard.module.css";
 
 export default function AdminDashboard() {
+  const formProperty = [
+    {
+      label: "filmTitle",
+      classname: `w-75 ${classCss.center}`,
+      type: "text",
+      name: "filmTitle",
+      id: "filmTitle",
+      placeholder: "",
+      text: "Film Title",
+    },
+    {
+      label: "coverPicture",
+      classname: `${classCss.center} ${classCss.file}`,
+      type: "file",
+      name: "coverPicture",
+      id: "coverPicture",
+      placeholder: null,
+      text: "Cover Picture",
+    },
+    {
+      label: "trailerURL",
+      classname: `w-100 ${classCss.center}`,
+      type: "text",
+      name: "trailerURL",
+      id: "trailerURL",
+      placeholder: "example = https://www.youtube.com/watch?v=XlDRFRaH9hI",
+      text: "Trailer URL",
+    },
+    {
+      label: "filmDescription",
+      classname: `w-100 ${classCss.center}`,
+      type: "textarea",
+      name: "filmDescription",
+      id: "filmDescription",
+      placeholder: "input film decription here",
+      text: "Film Description",
+    },
+    {
+      label: "synopsis",
+      classname: `w-100 ${classCss.center}`,
+      type: "textarea",
+      name: "synopsis",
+      id: "synopsis",
+      placeholder: "input synopsis film here",
+      text: "Synopsis",
+    },
+  ];
   return (
     <Container className={classCss.admin_dashboard_container}>
       <h4>Admin Only</h4>
@@ -24,55 +71,18 @@ export default function AdminDashboard() {
       </div>
       <Form className="form ">
         <Col>
-          <FormGroup>
-            <Label for="filmTitle">Film Title</Label>
-            <Input
-              className={`w-75 ${classCss.center}`}
-              type="text"
-              name="filmTitle"
-              id="filmTitle"
-              placeholder=""
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="coverPicture">Cover Picture</Label>
-            <Input
-              className={`${classCss.center} ${classCss.file}`}
-              type="file"
-              name="coverPicture"
-              id="coverPicture"
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="trailerURL">Trailer URL</Label>
-            <Input
-              className={`w-100 ${classCss.center}`}
-              type="text"
-              name="trailerURL"
-              id="trailerURL"
-              placeholder="example = https://www.youtube.com/watch?v=XlDRFRaH9hI"
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="filmDescription">Film Description</Label>
-            <Input
-              className={`w-100 ${classCss.center}`}
-              type="textarea"
-              name="filmDescription"
-              id="filmDescription"
-              placeholder="input film decription here"
-            />
-          </FormGroup>
-          <FormGroup>
-            <Label for="synopsis">Synosis</Label>
-            <Input
-              className={`w-100 ${classCss.center}`}
-              type="textarea"
-              name="synopsis"
-              id="synopsis"
-              placeholder="input synopsis film here"
-            />
-          </FormGroup>
+          {formProperty.map((data, index) => (
+            <FormGroup key={index}>
+              <Label for={data.label}>{data.text}</Label>
+              <Input
+                className={data.classname}
+                type={data.type}
+                name={data.name}
+                id={data.id}
+                placeholder={data.placeholder}
+              />
+            </FormGroup>
+          ))}
         </Col>
         <Button>Update Film</Button>
       </Form>

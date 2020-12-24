@@ -1,5 +1,8 @@
 .user_dashboard_container {
   text-align: center;
+  background-color: white;
+  border-radius: 10px;
+  padding: 5px;
 }
 
 .user_image {

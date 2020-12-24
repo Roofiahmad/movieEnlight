@@ -7,6 +7,8 @@ import Overview from "./Pages/Overview";
 import Characters from "./Pages/Characters";
 import Home from "./Pages/Home";
 import FilmDetails from "./Pages/FilmDetails";
+import AdminDashboard from "./Pages/AdminDashboard";
+import UserSetting from "./Pages/UserDashboard";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route exact path="/" component={Home} />
           <Route exact path="/filmdetails" component={FilmDetails} />
           <Route exact path="/characters" component={Characters} />
+          <Route exact path="/admin" component={AdminDashboard} />
+          <Route exact path="/user" component={UserSetting} />
         </Switch>
       </div>
     </Router>
