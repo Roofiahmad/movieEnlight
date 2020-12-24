@@ -11,16 +11,16 @@ import "../Components/All.css"
 import Overview from "./Overview";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
-function FilmDetails() {
+function FilmReview() {
   return (
   
         <div className="body">
         <Banner />
-        <Overview />
+        <Review />
         <FooterComp />     
         </div>
    
   );
 }
 
-export default FilmDetails;
+export default FilmReview;
