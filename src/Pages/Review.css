@@ -1,0 +1,11 @@
+.bg-black {
+    background-color: black;
+}
+
+h5, h6 {
+    color: white;
+}
+
+.output {
+    margin-top: 20px;
+}

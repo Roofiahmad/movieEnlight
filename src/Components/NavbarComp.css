@@ -35,6 +35,13 @@
     border-color: whitesmoke;
 }
 
+.ava {
+    margin-top: 20px;
+    width: 40px;
+    height: 40px;
+    border-radius: 100px;
+}
+
 
 /* tampilan device */
 @media only screen and (max-width: 480px) {
