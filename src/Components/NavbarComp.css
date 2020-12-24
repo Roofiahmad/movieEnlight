@@ -16,7 +16,7 @@
 }
 
 .btn-yellow {
-    background-color: #FFC200;
+    background-color: #FFB700;
     border: none;
     border-radius: 10px;
     width: 400px;
@@ -55,10 +55,10 @@
 }
 
 .a {
-    color: #FFC200;
+    color: #FFB700;
     cursor: pointer;
 }
 
 .a:hover {
-    color: #fdcb25;
+    color: #FFB700;
 }
