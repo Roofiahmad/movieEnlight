@@ -23,15 +23,14 @@ import {
 import { Link } from "react-router-dom";
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
+import SignInModal from "./SignInModal";
+import SignUpModal from "./SignUpModal";
 
 const NavbarComp = (props) => {
-  const isLogged = false;
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  const isLogged = localStorage.getItem("token");
 
-  const handleChangeField = (e) => {
-    console.log(e.target.name);
-    console.log(e.target.value);
+  const signOutHandler = () => {
+    localStorage.clear();
   };
 
   const handleSubmit = (event) => {
@@ -109,7 +108,9 @@ const NavbarComp = (props) => {
                       </Link>
                     </DropdownItem>
                     <DropdownItem>Help</DropdownItem>
-                    <DropdownItem>Sign Out</DropdownItem>
+                    <DropdownItem onClick={signOutHandler}>
+                      Sign Out
+                    </DropdownItem>
                   </DropdownMenu>
                 </UncontrolledDropdown>
               ) : (
@@ -135,98 +136,19 @@ const NavbarComp = (props) => {
           </Collapse>
         </Navbar>
       </Container>
-      <Modal isOpen={modal} toggleSignup={toggleSignup} className={className}>
-        <ModalBody>
-          <Container style={{ textAlign: "right" }}>
-            <Button
-              style={{
-                backgroundColor: "#FFB700",
-                border: "none",
-                fontSize: "20px",
-              }}
-              onClick={toggleSignup}
-            >
-              <strong>X</strong>
-            </Button>
-          </Container>
-          <Container style={{ textAlign: "center", color: "#FFB700" }}>
-            <h3>
-              <strong>Sign Up</strong>
-            </h3>
-          </Container>
-          <Container>
-            <hr />
-            <Form>
-              <Label>Full Name</Label>
-              <Input type="text" placeholder=""></Input>
-              <br />
-              <Label>Email</Label>
-              <Input type="text" placeholder=""></Input>
-              <br />
-              <Label>Password</Label>
-              <Input type="password" placeholder=""></Input>
-              <br />
-              <Label>Confirm Password</Label>
-              <Input type="password" placeholder=""></Input>
-              <br />
-              <Container style={{ textAlign: "center" }}>
-                <button className="btn-yellow">Sign Up</button> <br />
-                <small className="text-muted">
-                  Already have an account?{" "}
-                  <a className="a" onClick={toggleSwitch}>
-                    Sign In
-                  </a>
-                </small>
-              </Container>
-            </Form>
-          </Container>
-        </ModalBody>
-      </Modal>
+      <SignUpModal
+        modal={modal}
+        toggleSignup={toggleSignup}
+        classcss={className}
+        toggleSwitch={toggleSwitch}
+      />
 
-      <Modal isOpen={modals} toggleSignup={toggleSignin} className={className}>
-        <ModalBody>
-          <Container style={{ textAlign: "right" }}>
-            <Button
-              style={{
-                backgroundColor: "#FFB700",
-                border: "none",
-                fontSize: "20px",
-              }}
-              onClick={toggleSignin}
-            >
-              <strong>X</strong>
-            </Button>
-          </Container>
-          <Container style={{ textAlign: "center", color: "#FFB700" }}>
-            <h3>
-              <strong>Sign In</strong>
-            </h3>
-          </Container>
-          <Container>
-            <hr />
-            <Form onSubmit={(e) => handleSubmit(e)}>
-              <Label>Email</Label>
-              <Input type="text" placeholder=""></Input>
-              <br />
-              <Label>Password</Label>
-              <Input type="password" placeholder=""></Input>
-              <br />
-              <Container style={{ textAlign: "center" }}>
-                <button type="submit" className="btn-yellow">
-                  Sign In
-                </button>{" "}
-                <br />
-                <small className="text-muted">
-                  Don't have any account?{" "}
-                  <a className="a" onClick={toggleSwitch}>
-                    Sign Up
-                  </a>
-                </small>
-              </Container>
-            </Form>
-          </Container>
-        </ModalBody>
-      </Modal>
+      <SignInModal
+        modals={modals}
+        toggleSignin={toggleSignin}
+        classcss={className}
+        toggleSwitch={toggleSwitch}
+      />
     </div>
   );
 };
