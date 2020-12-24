@@ -16,7 +16,7 @@ class FooterComp extends Component {
           <div className="roww">
             <div className="about">
               <Link className="d-flex navbar-brand text-white mb-3" to="/">
-                <img src={logo2} alt="MilanTV" height="60" className="d-inline-block mr-2 align-middle" />
+                <img src="https://cdn.discordapp.com/attachments/789439456599212092/790110134293495838/logo.png" alt="MilanTV" height="60" className="d-inline-block mr-2 align-middle" />
             <h4 className="title">MilanTV</h4>
           </Link>
               <p className="lh-sm text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, quas atque nisi earum qui eaque ipsa odit autem corporis facilis aliquam voluptatibus dicta architecto reiciendis excepturi deleniti inventore repellat ex.</p>
