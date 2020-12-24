@@ -1,0 +1,27 @@
+.user_dashboard_container {
+  text-align: center;
+}
+
+.user_image {
+  width: 120px;
+  height: 120px;
+  padding: 10px;
+  border-radius: 20%;
+  border: 2px solid black;
+}
+.icon {
+  color: black;
+  font-size: 1rem;
+  position: relative;
+  left: -25px;
+  bottom: -49px;
+  opacity: 0.5;
+}
+.icon:hover,
+.user_image:hover {
+  cursor: pointer;
+  opacity: 1;
+}
+.email {
+  margin: 10px;
+}

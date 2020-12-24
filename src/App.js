@@ -6,6 +6,8 @@ import Review from "./Pages/Review";
 import Overview from "./Pages/Overview";
 import Characters from "./Pages/Characters";
 import Home from "./Pages/Home";
+import UserDashboard from "./Pages/UserDashboard";
+import AdminDashboard from "./Pages/AdminDashboard";
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
           <Route exact path="/overview" component={Overview} />
           <Route exact path="/characters" component={Characters} />
           <Route exact path="/review" component={Review} />
+          <Route exact path="/user" component={UserDashboard} />
+          <Route exact path="/admin" component={AdminDashboard} />
         </Switch>
       </div>
     </Router>
