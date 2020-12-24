@@ -22,9 +22,11 @@ export default function SignInModal(props) {
     };
 
     const response = await axios.post(
-      "https://reqres.in/api/login",
+      "https://cors-anywhere.herokuapp.com/" +
+        "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/user/login",
       sendaDataLogin
     );
+
     console.log(response, "login success");
 
     localStorage.setItem("token", response.data.token);
