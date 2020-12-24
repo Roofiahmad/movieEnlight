@@ -7,6 +7,7 @@ import classCss from "./Home.module.css";
 import Characters from "./Characters";
 import Review from "./Review";
 import Banner from "../Components/Banner";
+import "../Components/All.css"
 function Home() {
   return (
     <div>
