@@ -31,6 +31,7 @@ const NavbarComp = (props) => {
 
   const signOutHandler = () => {
     localStorage.clear();
+    window.location.reload();
   };
 
   const handleSubmit = (event) => {

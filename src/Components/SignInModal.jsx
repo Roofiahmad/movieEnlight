@@ -1,5 +1,7 @@
 import React from "react";
 import axios from "axios";
+import { createBrowserHistory } from 'history';
+import { Router, Route, Link, browserHistory } from 'react-router';
 import {
   Input,
   Container,
@@ -28,6 +30,8 @@ export default function SignInModal(props) {
     console.log(response, "login success");
 
     localStorage.setItem("token", response.data.token);
+
+    window.location.reload();
   };
 
   return (
