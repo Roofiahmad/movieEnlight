@@ -1,0 +1,37 @@
+.admin_dashboard_container {
+  background-color: white;
+  border-radius: 5px;
+  padding: 20px 10px 10px 10px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.admin_image {
+  width: 120px;
+  height: 120px;
+  padding: 10px;
+  border-radius: 20%;
+  border: 2px solid black;
+}
+.icon {
+  color: black;
+  font-size: 1rem;
+  position: relative;
+  left: -25px;
+  bottom: -49px;
+  opacity: 0.5;
+}
+
+.center {
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.file {
+  position: relative;
+  left: 50%;
+  width: 50px;
+  outline: none;
+  transform: translateX(-10%);
+}

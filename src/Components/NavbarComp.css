@@ -1,64 +1,75 @@
 .really-light {
-    background-color: white;
-    position: fixed;
+  background-color: white;
+  position: fixed;
 }
 .body {
-    background-color: black;
+  background-color: black;
 }
 
 .navreally-dark {
-    background-color: black;
+  background-color: black;
 }
 
 .buttonreally-light:hover {
-    background-color: whitesmoke;
-    border: none;
+  background-color: whitesmoke;
+  border: none;
 }
 
 .btn-yellow {
-    background-color: #FFB700;
-    border: none;
-    border-radius: 10px;
-    width: 400px;
-    height: 30px;
-    color: white;
-
+  background-color: #ffb700;
+  border: none;
+  border-radius: 10px;
+  width: 400px;
+  height: 30px;
+  color: white;
 }
 
 .text-link:hover {
-    cursor: pointer;
+  cursor: pointer;
 }
 
 .searchForm {
-    width: 300px;
-    border-radius: 5px;
-    border-color: whitesmoke;
+  width: 300px;
+  border-radius: 5px;
+  border-color: whitesmoke;
 }
 
 .ava {
-    margin-top: 20px;
-    width: 40px;
-    height: 40px;
-    border-radius: 100px;
+  margin-top: 20px;
+  width: 40px;
+  height: 40px;
+  border-radius: 100px;
 }
 
+.dropdown_link {
+  color: #212529;
+}
+.dropdown_link:hover {
+  color: #212529;
+  text-decoration: none;
+}
+
+.dropdown_link:active {
+  color: #fff;
+  text-decoration: none;
+}
 
 /* tampilan device */
 @media only screen and (max-width: 480px) {
-    .searchForm {
-        width: 100%;
-    }
+  .searchForm {
+    width: 100%;
+  }
 
-    .btn-yellow {
-        width: 200px;
-    }
+  .btn-yellow {
+    width: 200px;
+  }
 }
 
 .a {
-    color: #FFB700;
-    cursor: pointer;
+  color: #ffb700;
+  cursor: pointer;
 }
 
 .a:hover {
-    color: #FFB700;
+  color: #ffb700;
 }
