@@ -20,6 +20,7 @@ import {
   Form,
   Label
 } from 'reactstrap';
+import { Link } from "react-router-dom";
 
 import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
 
@@ -47,8 +48,10 @@ const NavbarComp = (props) => {
     <div className="body">
       <Container>
       <Navbar className="navreally-dark" dark expand="md">
-        <NavbarBrand style={{color: "#FFC200"}} href="/"><span><img src="https://cdn.discordapp.com/attachments/789439456599212092/790110134293495838/logo.png" width="50px"></img></span> <strong>MilanTV</strong></NavbarBrand>
-        <NavbarToggler style={{color: "#FFC200"}} onClick={toggle} />
+        <Link to="/">
+          <NavbarBrand style={{color: "#FFB700"}} href="/"><span><img src="https://cdn.discordapp.com/attachments/789439456599212092/790110134293495838/logo.png" width="50px"></img></span> <strong>MilanTV</strong></NavbarBrand>
+        </Link>
+        <NavbarToggler style={{color: "#FFB700"}} onClick={toggle} />
           <Collapse isOpen={isOpen} navbar>
           <br/>
           <Nav className="mr-auto" navbar>
@@ -57,7 +60,7 @@ const NavbarComp = (props) => {
                 <InputGroup>
                   <Input className="searchForm" type="input" placeholder="search movie"></Input>
                   <InputGroupAddon addonType="append">
-                    <Button style={{backgroundColor: "#FFC200"}}><i className="fa fa-search"></i></Button>
+                    <Button style={{backgroundColor: "#FFB700"}}><i className="fa fa-search"></i></Button>
                   </InputGroupAddon>
                 </InputGroup>
               </div>
@@ -94,9 +97,9 @@ const NavbarComp = (props) => {
       <Modal isOpen={modal} toggleSignup={toggleSignup} className={className}>
         <ModalBody>
           <Container style={{textAlign: "right"}}>
-            <Button style={{backgroundColor: "#FFC200", border: "none", fontSize: "20px"}} onClick={toggleSignup}><strong>X</strong></Button>
+            <Button style={{backgroundColor: "#FFB700", border: "none", fontSize: "20px"}} onClick={toggleSignup}><strong>X</strong></Button>
           </Container>
-          <Container style={{textAlign: "center", color: "#FFC200" }}>
+          <Container style={{textAlign: "center", color: "#FFB700" }}>
             <h3><strong>Sign Up</strong></h3>
           </Container>
           <Container>
@@ -127,9 +130,9 @@ const NavbarComp = (props) => {
       <Modal isOpen={modals} toggleSignup={toggleSignin} className={className}>
         <ModalBody>
           <Container style={{textAlign: "right"}}>
-            <Button style={{backgroundColor: "#FFC200", border: "none", fontSize: "20px"}} onClick={toggleSignin}><strong>X</strong></Button>
+            <Button style={{backgroundColor: "#FFB700", border: "none", fontSize: "20px"}} onClick={toggleSignin}><strong>X</strong></Button>
           </Container>
-          <Container style={{textAlign: "center", color: "#FFC200" }}>
+          <Container style={{textAlign: "center", color: "#FFB700" }}>
             <h3><strong>Sign In</strong></h3>
           </Container>
           <Container>

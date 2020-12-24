@@ -10,12 +10,11 @@ import Banner from "../Components/Banner";
 import "../Components/All.css"
 function Home() {
   return (
-    <div>
-      <Banner />
-      <Review />
-      <PaginationComp />
-      <FooterComp />
-      
+    <div className="body">
+      <Carousels />
+      <FilmCategory />
+      <PaginationComp />   
+      <FooterComp />  
        </div>
   );
 }

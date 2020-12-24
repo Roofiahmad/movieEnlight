@@ -9,3 +9,16 @@ h5, h6 {
 .output {
     margin-top: 20px;
 }
+
+.load {
+    color: black;
+    background-color: #FFB700;
+    border-radius: 10px;
+    border-style: none;
+    width: 150px;
+}
+
+.load:hover {
+    color: white;
+    background-color:#FFB700;
+}

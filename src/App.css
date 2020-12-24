@@ -12,3 +12,7 @@ body {
   grid-template-rows: auto 1fr auto;
   min-height: 100%;
 }
+
+.App {
+  background-color: black !important;
+}

@@ -12,7 +12,7 @@ class FooterComp extends Component {
   render() {
     return (
       <footer className="footer">
-        <div className="container ">
+        <div className="container">
           <div className="roww">
             <div className="about">
               <Link className="d-flex navbar-brand text-white mb-3" to="/">
@@ -62,7 +62,7 @@ class FooterComp extends Component {
               </Link>
             </div>
             </div>
-            <hr style={{backgroundColor:"white" }} />
+            <hr style={{backgroundColor:"black" }} />
             <p className="text-white text-center">Copyright &copy; 2020 MilanTV. All Rights Reserved</p>
           </div>
       </footer >
