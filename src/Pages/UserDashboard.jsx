@@ -11,11 +11,14 @@ import {
 } from "reactstrap";
 import classCss from "./UserDashboard.module.css";
 import UserModal from "./UserModal";
+import Axios from "axios";
 
 export default function UserDashboard() {
+  const token = localStorage.getItem("token");
+
   let config = {
     headers: {
-      Authorization: "Bearer " + validToken(),
+      Authorization: "Bearer " + token(),
     },
   };
   Axios.post("http://localhost:8000/api/v1/get_token_payloads", config)
