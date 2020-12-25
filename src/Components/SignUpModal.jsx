@@ -13,6 +13,7 @@ import axios from "axios";
 
 export default function SignUpModal(props) {
   const isLogged = localStorage.getItem("token");
+
   const handleSubmitSignup = async (e) => {
     e.preventDefault();
     console.log("fullname :", e.target.fullname.value);
@@ -33,9 +34,10 @@ export default function SignUpModal(props) {
     console.log(response, "signup success");
 
     localStorage.setItem("token", response.data.token);
-
-    window.location.reload();
+    // setTimeout(function() { window.location.reload(); }, 3000);
   };
+
+  
 
   return (
     <div>

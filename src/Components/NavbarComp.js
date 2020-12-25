@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./NavbarComp.css";
 import Axios from "axios";
 import {
@@ -52,38 +52,54 @@ const NavbarComp = (props) => {
   };
 
   const { buttonLabel, className } = props;
+  let [image, setImage] = useState("https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png");
+  // let userName = localStorage.getItem("userName");
+  //   console.log( userName )
+  let [userName, setName] = useState("No Name");
 
-  let config = {
-    headers: {
-      'Authorization': 'Bearer ' + isLogged 
-    }
+  useEffect(async () => {
 
-  }
+      if (isLogged) {
+        
+            let config = {
+              headers: {
+                'Authorization': 'Bearer ' + isLogged, 
+              }
 
- 
-  
+            };
+      
+        Axios.get( 
+          "https://cors-anywhere.herokuapp.com/"+"http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/user/profile",
+            config
+          )
+          .then( ( response ) => {
+            console.log( response )
+            let images = response.data.data.image;
+            userName = response.data.data.fullName;
+            localStorage.setItem("userName", userName);
+            localStorage.setItem("images", images);
+            // window.location.reload();
+            if (localStorage.getItem('images')) {
+              let newName = localStorage.getItem('userName');
+              setName(newName);
+              let photo = localStorage.getItem('images');
+              if( photo !== "/img/null" ) {
+              let images = `http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969${photo}`;            
+                setImage(images);
+                console.log(localStorage.getItem('images'));
+                console.log('render!');     
+                } else {
+                  let images = "https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png";
+                  setImage(images);
+                  console.log(localStorage.getItem('images'));
+                }
+              }
 
-  const dataLogin = Axios.get( 
-    "https://cors-anywhere.herokuapp.com/"+"http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/user/profile",
-      config
-    )
-    .then( ( response ) => {
-      console.log( response )
-      image = response.data.data.image;
-      userName = response.data.data.fullName;
-      localStorage.setItem("userName", userName);
-      localStorage.setItem("image", image);
-    } )
-    .catch()
-    
-
-    let image = localStorage.getItem("image");
-    let userName = localStorage.getItem("userName");
-    image = `http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969${image}`
-    console.log( userName )
-    console.log( image )
-    
-
+        })
+          .catch((err) => console.log(err));
+      }
+      
+  })
   
 
   return (
@@ -123,7 +139,7 @@ const NavbarComp = (props) => {
               {isLogged ? (
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav>
-                    <img
+                    <img 
                       src={image}
                       className="ava"
                     ></img>
