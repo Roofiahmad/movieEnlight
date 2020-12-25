@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./NavbarComp.css";
 import {
   Input,
@@ -8,34 +8,46 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
   NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavbarText,
   InputGroup,
   InputGroupAddon,
-  Form,
-  Label,
+  Button,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import SignInModal from "./SignInModal";
 import SignUpModal from "./SignUpModal";
+import axios from "axios";
 
 const NavbarComp = (props) => {
-  const isLogged = localStorage.getItem("token");
+  const token = localStorage.getItem("token");
+  const [userData, setUserData] = useState("");
+
+  useEffect(async () => {
+    let config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+    axios
+      .get(
+        "https://cors-anywhere.herokuapp.com/" +
+          "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/user/profile",
+        config
+      )
+      .then((response) => {
+        setUserData(response.data.data);
+        console.log(response.data);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const signOutHandler = () => {
     localStorage.clear();
     window.location.reload();
-  };
-
-  const handleSubmit = (event) => {
-    console.log(event);
   };
 
   const [isOpen, setIsOpen] = useState(false);
@@ -86,7 +98,7 @@ const NavbarComp = (props) => {
               </InputGroup>
             </div>
             <NavLink>
-              {isLogged ? (
+              {token ? (
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav>
                     <img
@@ -96,7 +108,7 @@ const NavbarComp = (props) => {
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem>
-                      <b>Jody Mantap</b>
+                      <b>{userData.fullName}</b>
                     </DropdownItem>
                     <DropdownItem>
                       <Link className="dropdown_link" to="/user">
