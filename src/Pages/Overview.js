@@ -18,7 +18,7 @@ export default function Overview() {
       <div className={classCss.category_container}>
         <div className={classCss.category_btn_container}>
           <button className={classCss.category_btn}>Overview</button>
-          <Link to="/review">
+          <Link to="/filmreview">
             <button className={classCss.category_btn}>Review</button>
           </Link>
         </div>

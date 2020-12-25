@@ -9,6 +9,7 @@ import {
   Form,
   Label,
 } from "reactstrap";
+import axios from "axios";
 
 import axios from "axios";
 
@@ -19,22 +20,20 @@ export default function SignUpModal(props) {
     e.preventDefault();
     console.log("fullname :", e.target.fullName.value);
     console.log("email :", e.target.email.value);
-    console.log("password :", e.target.password.value);
-    console.log("password :", e.target.passwordConfirmation.value);
+    // console.log("password :", e.target.password.value);
 
-    const sendaDataSignup = {
-      fullName: e.target.fullName.value,
+    const sendaDataSignUp = {
+      fullName: e.target.fullname.value,
       email: e.target.email.value,
       password: e.target.password.value,
-      passwordConfirmation: e.target.passwordConfirmation.value,
+      passwordConfirmation: e.target.confirmpassword.value,
     };
 
     const response = await axios.post(
       "https://cors-anywhere.herokuapp.com/" +
         "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/user/signup",
-      sendaDataSignup
+      sendaDataSignUp
     );
-
     console.log(response, "signup success");
 
     localStorage.setItem("token", response.data.token);

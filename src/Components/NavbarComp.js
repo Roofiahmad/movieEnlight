@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "./NavbarComp.css";
+import Axios from "axios";
 import {
   Input,
   Container,
@@ -64,6 +65,32 @@ const NavbarComp = (props) => {
 
   const { buttonLabel, className } = props;
 
+  let config = {
+    headers: {
+      Authorization: "Bearer " + isLogged,
+    },
+  };
+
+  const dataLogin = Axios.get(
+    "https://cors-anywhere.herokuapp.com/" +
+      "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/user/profile",
+    config
+  )
+    .then((response) => {
+      console.log(response);
+      image = response.data.data.image;
+      userName = response.data.data.fullName;
+      localStorage.setItem("userName", userName);
+      localStorage.setItem("image", image);
+    })
+    .catch();
+
+  let image = localStorage.getItem("image");
+  let userName = localStorage.getItem("userName");
+  image = `http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969${image}`;
+  console.log(userName);
+  console.log(image);
+
   return (
     <div className="body">
       <Container>
@@ -101,10 +128,7 @@ const NavbarComp = (props) => {
               {token ? (
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav>
-                    <img
-                      src="https://media-exp1.licdn.com/dms/image/C5603AQH19uFleJ5GTg/profile-displayphoto-shrink_100_100/0/1599416920232?e=1613001600&v=beta&t=YKWii72d55LG67y88694QtOKGNUG0ljJR7W3zGZGJPA"
-                      className="ava"
-                    ></img>
+                    <img src={image} className="ava"></img>
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem>
