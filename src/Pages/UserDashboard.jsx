@@ -13,6 +13,17 @@ import classCss from "./UserDashboard.module.css";
 import UserModal from "./UserModal";
 
 export default function UserDashboard() {
+  let config = {
+    headers: {
+      Authorization: "Bearer " + validToken(),
+    },
+  };
+  Axios.post("http://localhost:8000/api/v1/get_token_payloads", config)
+    .then((response) => {
+      console.log(response);
+    })
+    .catch();
+
   const [modal, setModal] = useState(false);
 
   const toggle = () => setModal(!modal);
