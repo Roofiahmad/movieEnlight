@@ -11,8 +11,6 @@ import {
 } from "reactstrap";
 import axios from "axios";
 
-import axios from "axios";
-
 export default function SignUpModal(props) {
   const isLogged = localStorage.getItem("token");
 

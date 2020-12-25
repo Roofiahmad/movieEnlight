@@ -26,8 +26,9 @@ import axios from "axios";
 const NavbarComp = (props) => {
   const token = localStorage.getItem("token");
   const [userData, setUserData] = useState("");
-
-  useEffect(async () => {
+  let regex = /admin/;
+  const admin = regex.test(userData.role);
+  useEffect(() => {
     let config = {
       headers: {
         Authorization: "Bearer " + token,
@@ -40,8 +41,16 @@ const NavbarComp = (props) => {
         config
       )
       .then((response) => {
-        setUserData(response.data.data);
-        console.log(response.data);
+        let updateUser = response.data.data;
+        console.log(updateUser);
+        if (updateUser.image === "/img/null") {
+          updateUser.image =
+            "https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png";
+        } else {
+          updateUser.image = `http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969${response.data.data.image}`;
+        }
+        console.log(updateUser.role);
+        setUserData(updateUser);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -65,31 +74,31 @@ const NavbarComp = (props) => {
 
   const { buttonLabel, className } = props;
 
-  let config = {
-    headers: {
-      Authorization: "Bearer " + isLogged,
-    },
-  };
+  // let config = {
+  //   headers: {
+  //     Authorization: "Bearer " + isLogged,
+  //   },
+  // };
 
-  const dataLogin = Axios.get(
-    "https://cors-anywhere.herokuapp.com/" +
-      "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/user/profile",
-    config
-  )
-    .then((response) => {
-      console.log(response);
-      image = response.data.data.image;
-      userName = response.data.data.fullName;
-      localStorage.setItem("userName", userName);
-      localStorage.setItem("image", image);
-    })
-    .catch();
+  // const dataLogin = Axios.get(
+  //   "https://cors-anywhere.herokuapp.com/" +
+  //     "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/user/profile",
+  //   config
+  // )
+  //   .then((response) => {
+  //     console.log(response);
+  //     image = response.data.data.image;
+  //     userName = response.data.data.fullName;
+  //     localStorage.setItem("userName", userName);
+  //     localStorage.setItem("image", image);
+  //   })
+  //   .catch();
 
-  let image = localStorage.getItem("image");
-  let userName = localStorage.getItem("userName");
-  image = `http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969${image}`;
-  console.log(userName);
-  console.log(image);
+  // let image = localStorage.getItem("image");
+  // let userName = localStorage.getItem("userName");
+  // image = `http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969${image}`;
+  // console.log(userName);
+  // console.log(image);
 
   return (
     <div className="body">
@@ -128,7 +137,7 @@ const NavbarComp = (props) => {
               {token ? (
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav>
-                    <img src={image} className="ava"></img>
+                    <img src={userData.image} className="ava"></img>
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem>
@@ -139,11 +148,13 @@ const NavbarComp = (props) => {
                         Profile
                       </Link>
                     </DropdownItem>
-                    <DropdownItem>
-                      <Link to="/user" className="dropdown_link">
-                        Settings
-                      </Link>
-                    </DropdownItem>
+                    {admin ? (
+                      <DropdownItem>
+                        <Link to="/admin" className="dropdown_link">
+                          Admin Settings
+                        </Link>
+                      </DropdownItem>
+                    ) : null}
                     <DropdownItem>Help</DropdownItem>
                     <DropdownItem onClick={signOutHandler}>
                       Sign Out
