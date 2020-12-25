@@ -1,7 +1,7 @@
 import React from "react";
 import axios from "axios";
-import { createBrowserHistory } from 'history';
-import { Router, Route, Link, browserHistory } from 'react-router';
+import { createBrowserHistory } from "history";
+import { Router, Route, Link, browserHistory } from "react-router";
 import {
   Input,
   Container,
@@ -24,9 +24,11 @@ export default function SignInModal(props) {
     };
 
     const response = await axios.post(
-      "https://cors-anywhere.herokuapp.com/"+"http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/user/login",
+      "https://cors-anywhere.herokuapp.com/" +
+        "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/user/login",
       sendaDataLogin
     );
+
     console.log(response, "login success");
 
     localStorage.setItem("token", response.data.token);

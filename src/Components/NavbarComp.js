@@ -9,34 +9,56 @@ import {
   NavbarToggler,
   NavbarBrand,
   Nav,
-  NavItem,
   NavLink,
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
   DropdownItem,
-  NavbarText,
   InputGroup,
   InputGroupAddon,
-  Form,
-  Label,
+  Button,
 } from "reactstrap";
 import { Link } from "react-router-dom";
-
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from "reactstrap";
 import SignInModal from "./SignInModal";
 import SignUpModal from "./SignUpModal";
+import axios from "axios";
 
 const NavbarComp = (props) => {
+  const token = localStorage.getItem("token");
   const isLogged = localStorage.getItem("token");
+  const [userData, setUserData] = useState("");
+  let regex = /admin/;
+  const admin = regex.test(userData.role);
+  useEffect(() => {
+    let config = {
+      headers: {
+        Authorization: "Bearer " + token,
+      },
+    };
+    axios
+      .get(
+        "https://cors-anywhere.herokuapp.com/" +
+          "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/user/profile",
+        config
+      )
+      .then((response) => {
+        let updateUser = response.data.data;
+        console.log(updateUser);
+        if (updateUser.image === "/img/null") {
+          updateUser.image =
+            "https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png";
+        } else {
+          updateUser.image = `http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969${response.data.data.image}`;
+        }
+        console.log(updateUser.role);
+        setUserData(updateUser);
+      })
+      .catch((err) => console.log(err));
+  }, []);
 
   const signOutHandler = () => {
     localStorage.clear();
     window.location.reload();
-  };
-
-  const handleSubmit = (event) => {
-    console.log(event);
   };
 
   const [isOpen, setIsOpen] = useState(false);
@@ -52,6 +74,7 @@ const NavbarComp = (props) => {
   };
 
   const { buttonLabel, className } = props;
+
   let [image, setImage] = useState("https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png");
   // let userName = localStorage.getItem("userName");
   //   console.log( userName )
@@ -102,6 +125,33 @@ const NavbarComp = (props) => {
   })
   
 
+  // let config = {
+  //   headers: {
+  //     Authorization: "Bearer " + isLogged,
+  //   },
+  // };
+
+  // const dataLogin = Axios.get(
+  //   "https://cors-anywhere.herokuapp.com/" +
+  //     "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/user/profile",
+  //   config
+  // )
+  //   .then((response) => {
+  //     console.log(response);
+  //     image = response.data.data.image;
+  //     userName = response.data.data.fullName;
+  //     localStorage.setItem("userName", userName);
+  //     localStorage.setItem("image", image);
+  //   })
+  //   .catch();
+
+  // let image = localStorage.getItem("image");
+  // let userName = localStorage.getItem("userName");
+  // image = `http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969${image}`;
+  // console.log(userName);
+  // console.log(image);
+
+
   return (
     <div className="body">
       <Container>
@@ -136,28 +186,33 @@ const NavbarComp = (props) => {
               </InputGroup>
             </div>
             <NavLink>
-              {isLogged ? (
+              {token ? (
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav>
+
                     <img 
                       src={image}
-                      className="ava"
-                    ></img>
+                      className="ava">
+
+                    </img>
+
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem>
-                      <b>{userName}</b>
+                      <b>{userData.fullName}</b>
                     </DropdownItem>
                     <DropdownItem>
                       <Link className="dropdown_link" to="/user">
                         Profile
                       </Link>
                     </DropdownItem>
-                    <DropdownItem>
-                      <Link to="/user" className="dropdown_link">
-                        Settings
-                      </Link>
-                    </DropdownItem>
+                    {admin ? (
+                      <DropdownItem>
+                        <Link to="/admin" className="dropdown_link">
+                          Admin Settings
+                        </Link>
+                      </DropdownItem>
+                    ) : null}
                     <DropdownItem>Help</DropdownItem>
                     <DropdownItem onClick={signOutHandler}>
                       Sign Out

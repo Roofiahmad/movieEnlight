@@ -6,6 +6,7 @@ import StarRatingComponent from "react-star-rating-component";
 import { Form, Input } from "reactstrap";
 import "./Review.css";
 import { Link } from "react-router-dom";
+import Banner from "../Components/Banner"
 
 export default function Review() {
   const ratingChanged = (newRating) => {
