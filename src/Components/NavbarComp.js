@@ -24,37 +24,15 @@ import SignUpModal from "./SignUpModal";
 import axios from "axios";
 
 const NavbarComp = (props) => {
-  const token = localStorage.getItem("token");
+  const token = localStorage.getItem("access");
   const isLogged = localStorage.getItem("token");
+  console.log("INI TUH TOKEN", isLogged);
   const [userData, setUserData] = useState("");
+  const role = localStorage.getItem("role");
   let regex = /admin/;
-  const admin = regex.test(userData.role);
-  useEffect(() => {
-    let config = {
-      headers: {
-        Authorization: "Bearer " + token,
-      },
-    };
-    axios
-      .get(
-        "https://cors-anywhere.herokuapp.com/" +
-          "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/user/profile",
-        config
-      )
-      .then((response) => {
-        let updateUser = response.data.data;
-        console.log(updateUser);
-        if (updateUser.image === "/img/null") {
-          updateUser.image =
-            "https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png";
-        } else {
-          updateUser.image = `http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969${response.data.data.image}`;
-        }
-        console.log(updateUser.role);
-        setUserData(updateUser);
-      })
-      .catch((err) => console.log(err));
-  }, []);
+  let userregex = /user/;
+  const admin = regex.test(role);
+  const user = userregex.test(role);
 
   const signOutHandler = () => {
     localStorage.clear();
@@ -101,6 +79,8 @@ const NavbarComp = (props) => {
             userName = response.data.data.fullName;
             localStorage.setItem("userName", userName);
             localStorage.setItem("images", images);
+            localStorage.setItem("access", true)
+            localStorage.setItem("role", response.data.data.role)
             // window.location.reload();
             if (localStorage.getItem('images')) {
               let newName = localStorage.getItem('userName');
@@ -199,10 +179,10 @@ const NavbarComp = (props) => {
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem>
-                      <b>{userData.fullName}</b>
+                      <b>{userName}</b>
                     </DropdownItem>
                     <DropdownItem>
-                      <Link className="dropdown_link" to="/user">
+                      <Link to="/user" className="dropdown_link">
                         Profile
                       </Link>
                     </DropdownItem>
