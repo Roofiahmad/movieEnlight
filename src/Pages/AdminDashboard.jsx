@@ -1,64 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
-import {
-  Container,
-  Col,
-  Form,
-  FormGroup,
-  Label,
-  Input,
-  Button,
-} from "reactstrap";
+import { Container, Button } from "reactstrap";
 import classCss from "./AdminDashboard.module.css";
+import AddMovie from "./AddMovie";
+import UpdateMovie from "./UpdateMovie";
+import UpdateTrailer from "./UpdateTrailer";
+import UpdatePoster from "./UpdatePoster";
+import DeleteMovie from "./Deletemovie";
 
 export default function AdminDashboard() {
-  const formProperty = [
-    {
-      label: "filmTitle",
-      classname: `w-75 ${classCss.center}`,
-      type: "text",
-      name: "filmTitle",
-      id: "filmTitle",
-      placeholder: "",
-      text: "Film Title",
-    },
-    {
-      label: "coverPicture",
-      classname: `${classCss.center} ${classCss.file}`,
-      type: "file",
-      name: "coverPicture",
-      id: "coverPicture",
-      placeholder: null,
-      text: "Cover Picture",
-    },
-    {
-      label: "trailerURL",
-      classname: `w-100 ${classCss.center}`,
-      type: "text",
-      name: "trailerURL",
-      id: "trailerURL",
-      placeholder: "example = https://www.youtube.com/watch?v=XlDRFRaH9hI",
-      text: "Trailer URL",
-    },
-    {
-      label: "filmDescription",
-      classname: `w-100 ${classCss.center}`,
-      type: "textarea",
-      name: "filmDescription",
-      id: "filmDescription",
-      placeholder: "input film decription here",
-      text: "Film Description",
-    },
-    {
-      label: "synopsis",
-      classname: `w-100 ${classCss.center}`,
-      type: "textarea",
-      name: "synopsis",
-      id: "synopsis",
-      placeholder: "input synopsis film here",
-      text: "Synopsis",
-    },
-  ];
+  const [newMovie, setNewMovie] = useState(false);
+  const [updateMovie, setUpdateMovie] = useState(false);
+  const [updateTrailer, setUpdateTrailer] = useState(false);
+  const [updatePoster, setUpdatePoster] = useState(false);
+  const [deleteMovie, setDeleteMovie] = useState(false);
+
   return (
     <Container className={classCss.admin_dashboard_container}>
       <h4>Admin Only</h4>
@@ -69,23 +25,58 @@ export default function AdminDashboard() {
           alt="user image"
         />
       </div>
-      <Form className="form ">
-        <Col>
-          {formProperty.map((data, index) => (
-            <FormGroup key={index}>
-              <Label for={data.label}>{data.text}</Label>
-              <Input
-                className={data.classname}
-                type={data.type}
-                name={data.name}
-                id={data.id}
-                placeholder={data.placeholder}
-              />
-            </FormGroup>
-          ))}
-        </Col>
-        <Button>Update Film</Button>
-      </Form>
+      <Button
+        className={classCss.submit_button}
+        onClick={() => {
+          setNewMovie(!newMovie);
+          setUpdateMovie(false);
+          setUpdateTrailer(false);
+        }}
+      >
+        New Movie
+      </Button>
+      <Button
+        className={classCss.submit_button}
+        onClick={() => {
+          setUpdateMovie(!updateMovie);
+          setUpdateTrailer(false);
+          setNewMovie(false);
+        }}
+      >
+        Update Movie
+      </Button>
+      <Button
+        className={classCss.submit_button}
+        onClick={() => {
+          setUpdateTrailer(!updateTrailer);
+          setUpdateMovie(false);
+          setNewMovie(false);
+        }}
+      >
+        Update Trailer
+      </Button>
+      <Button
+        className={classCss.submit_button}
+        onClick={() => {
+          setUpdatePoster(!updatePoster);
+          setUpdateTrailer(false);
+          setUpdateMovie(false);
+          setNewMovie(false);
+        }}
+      >
+        Update Poster
+      </Button>
+      <Button
+        className={classCss.submit_button}
+        onClick={() => setDeleteMovie(!deleteMovie)}
+      >
+        Delete Movie
+      </Button>
+      {newMovie ? <AddMovie /> : null}
+      {updateMovie ? <UpdateMovie /> : null}
+      {updateTrailer ? <UpdateTrailer /> : null}
+      {updatePoster ? <UpdatePoster /> : null}
+      {deleteMovie ? <DeleteMovie /> : null}
     </Container>
   );
 }
