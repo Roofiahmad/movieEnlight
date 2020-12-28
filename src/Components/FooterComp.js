@@ -62,7 +62,7 @@ class FooterComp extends Component {
               </Link>
             </div>
             </div>
-            <hr style={{backgroundColor:"black" }} />
+            <hr style={{backgroundColor:"white" }} />
             <p className="text-white text-center">Copyright &copy; 2020 MilanTV. All Rights Reserved</p>
           </div>
       </footer >
