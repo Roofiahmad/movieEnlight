@@ -88,6 +88,7 @@ export default function AddMovie() {
       )
       .then((response) => {
         console.log(response);
+        alert("Movie added successfully");
         window.location.reload();
       })
       .catch((err) => console.log(err));
