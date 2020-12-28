@@ -43,6 +43,7 @@ export default function UserDashboard() {
 
   // Ubah Password
     const isLogged = localStorage.getItem("token");
+    const email = localStorage.getItem("email");
     const handleUpdatePassword = async (e) => {
         e.preventDefault();
         console.log("PASSWORDDDD :", e.target.password.value);
@@ -91,7 +92,7 @@ export default function UserDashboard() {
           <Form className="form">
             <Col>
               <div className={classCss.email}>
-                your email: saitama@example.com
+                your email: {email}
               </div>
             </Col>
           </Form>
