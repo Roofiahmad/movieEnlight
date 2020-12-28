@@ -30,7 +30,7 @@ const FilmCard = (props) => {
     { 
     movieArray.length > 0 ? movieArray.map(data => {
       return(
-        <Link to="/filmdetails">
+        <Link to={`/filmdetails/${data.title}`}>
         <div key={data.id} className={classCss.card}>
           <img
             className={classCss.card_image}

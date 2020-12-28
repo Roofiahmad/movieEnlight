@@ -5,19 +5,25 @@ import classCss2 from "../Components/FilmCard.module.css";
 import StarRatingComponent from "react-star-rating-component";
 import { Form, Input } from "reactstrap";
 import "./Review.css";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import Banner from "../Components/Banner"
+import axios from "axios";
 
 export default function Review() {
   const ratingChanged = (newRating) => {
     console.log(newRating);
   };
-
+  let { id } = useParams();
+  let title = localStorage.getItem("title_film");
+  const response = axios.get(`http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/review/show/movie/?movie_id=${id}&page=<page>&limit=<limit>`
+    ).then( ( response ) => {
+      console.log( response, "INI TUH REVIEW" );
+    })
   return (
     <div className="bg-black">
       <div className={classCss.category_container}>
         <div className={classCss.category_btn_container}>
-          <Link to="/filmdetails">
+          <Link to={`/filmdetails/${title}`}>
             <button className={classCss.category_btn}>Overview</button>
           </Link>
           <button className={classCss.category_btn}>Review</button>
