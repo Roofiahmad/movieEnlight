@@ -19,7 +19,7 @@ function App() {
         <NavbarComp />
         <Switch>
           <Route exact path="/" component={Home} />
-          <Route exact path="/filmdetails" component={FilmDetails} />
+          <Route exact path="/filmdetails/:title" component={FilmDetails} />
           <Route exact path="/characters" component={Characters} />
           {token ? (
           <Route exact path="/admin" component={AdminDashboard} />
@@ -29,7 +29,7 @@ function App() {
           <Route exact path="/user" component={UserSetting} />
           ) : ( <Redirect to="/" />
           )}
-          <Route exact path="/review" component={Review} />
+          <Route exact path="/review/:id" component={Review} />
         </Switch>
       </div>
     </Router>

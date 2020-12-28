@@ -83,7 +83,7 @@ export default function FilmCategory() {
           </button>
         ))}
       </div>
-      <FilmCard list={filmList} image_size={image_size} />
+      <FilmCard image_size={image_size} />
     </div>
   );
 }
