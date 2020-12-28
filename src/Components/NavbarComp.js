@@ -70,14 +70,16 @@ const NavbarComp = (props) => {
             };
       
         Axios.get( 
-          "https://cors-anywhere.herokuapp.com/"+"http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/user/profile",
+          "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/user/profile",
             config
           )
           .then( ( response ) => {
             console.log( response )
             let images = response.data.data.image;
             userName = response.data.data.fullName;
+            let email = response.data.data.email;
             localStorage.setItem("userName", userName);
+            localStorage.setItem("email", email);
             localStorage.setItem("images", images);
             localStorage.setItem("access", true)
             localStorage.setItem("role", response.data.data.role)
@@ -181,17 +183,17 @@ const NavbarComp = (props) => {
                     <DropdownItem>
                       <b>{userName}</b>
                     </DropdownItem>
+                    <Link to="/user" className="dropdown_link">
                     <DropdownItem>
-                      <Link to="/user" className="dropdown_link">
                         Profile
-                      </Link>
                     </DropdownItem>
+                    </Link>
                     {admin ? (
-                      <DropdownItem>
                         <Link to="/admin" className="dropdown_link">
+                      <DropdownItem>
                           Admin Settings
-                        </Link>
                       </DropdownItem>
+                      </Link>
                     ) : null}
                     <DropdownItem>Help</DropdownItem>
                     <DropdownItem onClick={signOutHandler}>

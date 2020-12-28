@@ -35,6 +35,7 @@ export default function UpdateTrailer() {
       )
       .then((response) => {
         console.log(response);
+        alert("Movie Deleted Succesfully");
         window.location.reload();
       })
       .catch((err) => console.log(err));
