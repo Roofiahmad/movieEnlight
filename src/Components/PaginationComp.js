@@ -6,9 +6,9 @@ class PaginationComp extends Component {
   render() {
     return (
       <Container>
-      <div className="container text-center">
+      <div className="container text-center mt-5">
       <nav aria-label="Page navigation">
-        <ul className="pagination container w-25 justify-content-between">
+        <ul className="pagination container w-25 justify-content-center">
           <li classNameName="page-item">
             <div style={{backgroundColor:"#FFB700"}} className="page-link text-black-50"  aria-label="Previous">
               <span aria-hidden="true">&larr;</span>
