@@ -27,7 +27,7 @@ const NavbarComp = (props) => {
   const token = localStorage.getItem("access");
   const isLogged = localStorage.getItem("token");
   console.log("INI TUH TOKEN", isLogged);
-  const [userData, setUserData] = useState("");
+  let titleSearched = "";
   const role = localStorage.getItem("role");
   let regex = /admin/;
   let userregex = /user/;
@@ -53,59 +53,56 @@ const NavbarComp = (props) => {
 
   const { buttonLabel, className } = props;
 
-  let [image, setImage] = useState("https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png");
+  let [image, setImage] = useState(
+    "https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png"
+  );
   // let userName = localStorage.getItem("userName");
   //   console.log( userName )
   let [userName, setName] = useState("No Name");
 
   useEffect(async () => {
+    if (isLogged) {
+      let config = {
+        headers: {
+          Authorization: "Bearer " + isLogged,
+        },
+      };
 
-      if (isLogged) {
-        
-            let config = {
-              headers: {
-                'Authorization': 'Bearer ' + isLogged, 
-              }
-
-            };
-      
-        Axios.get( 
-          "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/user/profile",
-            config
-          )
-          .then( ( response ) => {
-            console.log( response )
-            let images = response.data.data.image;
-            userName = response.data.data.fullName;
-            let email = response.data.data.email;
-            localStorage.setItem("userName", userName);
-            localStorage.setItem("email", email);
-            localStorage.setItem("images", images);
-            localStorage.setItem("access", true)
-            localStorage.setItem("role", response.data.data.role)
-            // window.location.reload();
-            if (localStorage.getItem('images')) {
-              let newName = localStorage.getItem('userName');
-              setName(newName);
-              let photo = localStorage.getItem('images');
-              if( photo !== "/img/null" ) {
-              let images = `${photo}`;            
-                setImage(images);
-                console.log(localStorage.getItem('images'));
-                console.log('render!');     
-                } else {
-                  let images = "https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png";
-                  setImage(images);
-                  console.log(localStorage.getItem('images'));
-                }
-              }
-
+      Axios.get(
+        "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/user/profile",
+        config
+      )
+        .then((response) => {
+          console.log(response);
+          let images = response.data.data.image;
+          userName = response.data.data.fullName;
+          let email = response.data.data.email;
+          localStorage.setItem("userName", userName);
+          localStorage.setItem("email", email);
+          localStorage.setItem("images", images);
+          localStorage.setItem("access", true);
+          localStorage.setItem("role", response.data.data.role);
+          // window.location.reload();
+          if (localStorage.getItem("images")) {
+            let newName = localStorage.getItem("userName");
+            setName(newName);
+            let photo = localStorage.getItem("images");
+            if (photo !== "/img/null") {
+              let images = `${photo}`;
+              setImage(images);
+              console.log(localStorage.getItem("images"));
+              console.log("render!");
+            } else {
+              let images =
+                "https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png";
+              setImage(images);
+              console.log(localStorage.getItem("images"));
+            }
+          }
         })
-          .catch((err) => console.log(err));
-      }
-      
-  })
-  
+        .catch((err) => console.log(err));
+    }
+  });
 
   // let config = {
   //   headers: {
@@ -133,7 +130,6 @@ const NavbarComp = (props) => {
   // console.log(userName);
   // console.log(image);
 
-
   return (
     <div className="body">
       <Container>
@@ -142,6 +138,7 @@ const NavbarComp = (props) => {
             <NavbarBrand style={{ color: "#FFB700" }} href="/">
               <span>
                 <img
+                  alt="user-image"
                   src="https://cdn.discordapp.com/attachments/789439456599212092/790110134293495838/logo.png"
                   width="50px"
                 ></img>
@@ -156,12 +153,19 @@ const NavbarComp = (props) => {
             <div className="col-md">
               <InputGroup>
                 <Input
+                  onChange={(e) => (titleSearched = e.target.value)}
                   className="searchForm"
-                  type="input"
+                  type="text"
                   placeholder="search movie"
                 ></Input>
                 <InputGroupAddon addonType="append">
-                  <Button style={{ backgroundColor: "#FFB700" }}>
+                  <Button
+                    onClick={() => {
+                      localStorage.setItem("searched", titleSearched);
+                      window.location.reload();
+                    }}
+                    style={{ backgroundColor: "#FFB700" }}
+                  >
                     <i className="fa fa-search"></i>
                   </Button>
                 </InputGroupAddon>
@@ -171,28 +175,18 @@ const NavbarComp = (props) => {
               {token ? (
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav>
-
-                    <img 
-                      src={image}
-                      className="ava">
-
-                    </img>
-
+                    <img src={image} className="ava" alt="user ava"></img>
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem>
                       <b>{userName}</b>
                     </DropdownItem>
                     <Link to="/user" className="dropdown_link">
-                    <DropdownItem>
-                        Profile
-                    </DropdownItem>
+                      <DropdownItem>Profile</DropdownItem>
                     </Link>
                     {admin ? (
-                        <Link to="/admin" className="dropdown_link">
-                      <DropdownItem>
-                          Admin Settings
-                      </DropdownItem>
+                      <Link to="/admin" className="dropdown_link">
+                        <DropdownItem>Admin Settings</DropdownItem>
                       </Link>
                     ) : null}
                     <DropdownItem>Help</DropdownItem>
