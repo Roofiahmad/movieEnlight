@@ -52,8 +52,12 @@ function FilmDetails() {
           <div className="container text-left">
           <div class="mb-4 text-white">
             <div class="pt-5">
-              <h1 class="display-4 font-weight-bold">{title}</h1>
-              <p class="lead my-3">MLorem ipsum dolor sit amet consectetur adipisicing elit. Debitis
+              <h1 class="display-4 font-weight-bold mb-5">{title}</h1>
+              <div className={bannerCss.rate_reviews}>
+                <StarRatingComponent value={4} emptyStarColor={"#fff"} />
+                <span>2200 reviews</span>
+              </div>
+              <p class="lead my-3">Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis
               cumque doloribus, sed ratione, blanditiis fugiat commodi illo
               inventore eius quae perferendis vel doloremque amet odio animi minus
               architecto corrupti fuga!</p>
