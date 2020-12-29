@@ -37,8 +37,8 @@ function FilmDetails() {
   
         <div className="body">
         <Banner />
-        <div className="bg-black">
-          <div className={classCss.category_container}>
+        <div className="bg-blac">
+          <div className="container text-left mt-4">
           <div className={classCss.category_btn_container}>
                 <button className={classCss.category_btn}>Overview</button>
               <Link to={`/review/${id}`}>
