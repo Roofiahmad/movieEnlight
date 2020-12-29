@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import FilmCategory from "../Components/FilmCategory";
 import FooterComp from "../Components/FooterComp";
 import PaginationComp from "../Components/PaginationComp";
@@ -14,18 +14,24 @@ import axios from "axios";
 
 function FilmDetails() {
   let { title } = useParams();
+  const [id, setId] = useState("");
   console.log("INI TUH TITLE", title);
-  const response = axios.get(`http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/movie/get/${title}`
-    ).then( ( response ) => {
-      console.log( "INI TUH RESPONSE", response )
-      console.log("INI TUH FILM ID", response.data.data.movieId);
-      localStorage.setItem("id_film", response.data.data.movieId);
-      localStorage.setItem("title_film", response.data.data.title);
-      // console.log( response.data.post )
-      // localStorage.setItem("ID", response.data.post)
-    })
+  useEffect(() => {
+    getMovie()
+  },[]);
+  function getMovie() {
+    axios.get(`http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/movie/get/${title}`
+      ).then( ( response ) => {
+        console.log( "INI TUH RESPONSE", response )
+        console.log("INI TUH FILM ID", response.data.data.movieId);
+        localStorage.setItem("id_film", response.data.data.movieId);
+        localStorage.setItem("title_film", response.data.data.title);
+        // console.log( response.data.post )
+        // localStorage.setItem("ID", response.data.post)
+        setId(localStorage.getItem("id_film"));
+      })
+  }
 
-    let id = localStorage.getItem("id_film");
 
   return (
   

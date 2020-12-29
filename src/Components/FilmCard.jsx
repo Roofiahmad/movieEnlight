@@ -4,31 +4,29 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 
 const FilmCard = (props) => {
-  const [movieArray, setMovie] = useState("")
+  const [movieArray, setMovie] = useState("");
   useEffect(() => {
-    getData()
-  }, []);
-  function getData() {
-    axios.get("https://cors-anywhere.herokuapp.com/" +
-      "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/movie/?page=1&limit=30",
-    )
+    getData();
+  }, [props]);
+  function getData(category = props.category) {
+    axios
+      .get(
+        `http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/movie/${category}`
+      )
       .then((response) => {
-        console.log(response, "GET MOVIE DATA SUCCESS");
-        let title = response.data.posts;
-        console.log(response.data.posts, "INI LIST ISI TITLE");
-        // setTitle(title);
-        localStorage.setItem("movie", "GET");
-        setMovie(response.data.posts);
-      });
+        response.data.posts
+          ? setMovie(response.data.posts)
+          : setMovie(response.data.data);
+      })
+      .catch((err) => console.log(err));
   }
-
-  console.log("GUYS INI STATENYAA", movieArray);
+  console.log(movieArray);
 
   return (
-
     <div className={classCss.card_container}>
-      {
-        movieArray.length > 0 ? movieArray.map(data => {
+      {movieArray.length > 0
+        ? movieArray.map((data) => {
+          let title = data.title.split(":");
           return (
             <Link to={`/filmdetails/${data.title}`}>
               <div key={data.id} className={classCss.card}>
@@ -37,14 +35,16 @@ const FilmCard = (props) => {
                   style={props.image_size}
                   src={data.poster}
                 />
-                <h5 className={classCss.title_text}>{data.title}</h5>
-                <h6 className={classCss.category_text}>{data.genre}</h6>
+                <div className={classCss.text_container}>
+                  <h5 className={classCss.title_text}>{title[0]}</h5>
+                  <h5 className={classCss.title_text}>{title[1]}</h5>
+                  <h6 className={classCss.category_text}>{data.genre}</h6>
+                </div>
               </div>
             </Link>
-          )
+          );
         })
-          : null}
-
+        : null}
     </div>
   );
 };
