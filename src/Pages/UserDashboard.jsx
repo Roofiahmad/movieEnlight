@@ -14,8 +14,6 @@ import {
 import classCss from "./UserDashboard.module.css";
 import UserModal from "./UserModal";
 import UserNameModal from "./UserNameModal";
-import { Redirect } from "react-router-dom";
-import { useHistory } from "react-router-dom";
 import axios from "axios";
 
 export default function UserDashboard() {
@@ -43,6 +41,7 @@ export default function UserDashboard() {
 
   // Ubah Password
     const isLogged = localStorage.getItem("token");
+    const adminImage = localStorage.getItem('images')
     const email = localStorage.getItem("email");
     const handleUpdatePassword = async (e) => {
         e.preventDefault();
@@ -84,7 +83,7 @@ export default function UserDashboard() {
             <img
               onClick={toggle}
               className={classCss.user_image}
-              src="https://i.pinimg.com/736x/c9/52/74/c95274e31176aab30dad81344e58c7cc.jpg"
+              src= {`${adminImage}`}
               alt="user image"
             />
             <i className={`far fa-edit ${classCss.icon}`} onClick={toggle}></i>
