@@ -104,32 +104,6 @@ const NavbarComp = (props) => {
     }
   });
 
-  // let config = {
-  //   headers: {
-  //     Authorization: "Bearer " + isLogged,
-  //   },
-  // };
-
-  // const dataLogin = Axios.get(
-  //   "https://cors-anywhere.herokuapp.com/" +
-  //     "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/user/profile",
-  //   config
-  // )
-  //   .then((response) => {
-  //     console.log(response);
-  //     image = response.data.data.image;
-  //     userName = response.data.data.fullName;
-  //     localStorage.setItem("userName", userName);
-  //     localStorage.setItem("image", image);
-  //   })
-  //   .catch();
-
-  // let image = localStorage.getItem("image");
-  // let userName = localStorage.getItem("userName");
-  // image = `http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969${image}`;
-  // console.log(userName);
-  // console.log(image);
-
   return (
     <div className="body">
       <Container>
@@ -138,12 +112,16 @@ const NavbarComp = (props) => {
             <NavbarBrand style={{ color: "#FFB700" }} href="/">
               <span>
                 <img
-                  alt="user-image"
-                  src="https://cdn.discordapp.com/attachments/789439456599212092/790110134293495838/logo.png"
+                  alt="logo"
+                  src="https://i.ibb.co/LZxNK66/png-clipart-graphic-film-cinema-movie-projector-hollywood-claquete-television-photography-thumbnail.png"
                   width="50px"
                 ></img>
               </span>{" "}
-              <strong>MilanTV</strong>
+              <img
+                  alt="logo"
+                  src="https://i.ibb.co/SsB8dMk/Logo-Makr-1-RD36w-1.png"
+                  width="100px"
+                ></img>
             </NavbarBrand>
           </Link>
           <NavbarToggler style={{ color: "#FFB700" }} onClick={toggle} />

@@ -6,6 +6,7 @@ import axios from "axios";
 
 export default function UpdateTrailer() {
   const token = localStorage.getItem("token");
+  let [title, setTitle] = useState("");
   const formProperty = [
     {
       label: "movieTitle",
@@ -20,15 +21,13 @@ export default function UpdateTrailer() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let title = e.target.title.value;
+    setTitle(e.target.title.value); 
     let header = {
       Authorization: "Bearer " + token,
     };
 
     axios
-      .delete(
-        "https://cors-anywhere.herokuapp.com/" +
-          `http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/movie/delete/${title}`,
+      .delete(`http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/movie/delete/${title}`,
         {
           headers: header,
         }

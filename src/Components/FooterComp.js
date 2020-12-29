@@ -16,8 +16,10 @@ class FooterComp extends Component {
           <div className="roww">
             <div className="about">
               <Link className="d-flex navbar-brand text-white mb-3" to="/">
-                <img src="https://cdn.discordapp.com/attachments/789439456599212092/790110134293495838/logo.png" alt="MilanTV" height="60" className="d-inline-block mr-2 align-middle" />
-            <h4 className="title">MilanTV</h4>
+                <span>
+                <img src="https://i.ibb.co/LZxNK66/png-clipart-graphic-film-cinema-movie-projector-hollywood-claquete-television-photography-thumbnail.png" alt="MilanTV" width="100" className="d-inline-block mr-2 align-middle" />
+                </span>{" "}
+                <img src="https://i.ibb.co/SsB8dMk/Logo-Makr-1-RD36w-1.png" alt="MilanTV" width="200" className="d-inline-block mr-2 align-middle" />
           </Link>
               <p className="lh-sm text-white">Lorem ipsum dolor sit amet consectetur adipisicing elit. Exercitationem, quas atque nisi earum qui eaque ipsa odit autem corporis facilis aliquam voluptatibus dicta architecto reiciendis excepturi deleniti inventore repellat ex.</p>
             </div>
@@ -62,7 +64,7 @@ class FooterComp extends Component {
               </Link>
             </div>
             </div>
-            <hr style={{backgroundColor:"black" }} />
+            <hr style={{backgroundColor:"white" }} />
             <p className="text-white text-center">Copyright &copy; 2020 MilanTV. All Rights Reserved</p>
           </div>
       </footer >

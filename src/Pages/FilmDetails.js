@@ -8,16 +8,28 @@ import Characters from "./Characters";
 import Review from "./Review";
 import Banner from "../Components/Banner";
 import "../Components/All.css"
-import Overview from "./Overview";
 import { BrowserRouter as Router, Switch, Route, Link, useParams } from "react-router-dom";
 import axios from "axios";
+import bannerCss from '../Components/Banner.module.css'
+import "./FilmDetails.css";
+import StarRatingComponent from "react-star-rating-component";
+
 
 function FilmDetails() {
   let { title } = useParams();
   const [id, setId] = useState("");
+  const [synopsis, setSynopsis] = useState("");
+  const [release, setRelease] = useState("");
+  const [director, setDirector] = useState("");
+  const [poster, setPoster] = useState("");
+  const [trailer, setTrailer] = useState("")
+  const [casts, setCasts] = useState("")
+  const [genre, setGenre] = useState("")
+  const [stars, setStars] = useState("")
   console.log("INI TUH TITLE", title);
   useEffect(() => {
     getMovie()
+    getStars()
   },[]);
   function getMovie() {
     axios.get(`http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/movie/get/${title}`
@@ -29,41 +41,75 @@ function FilmDetails() {
         // console.log( response.data.post )
         // localStorage.setItem("ID", response.data.post)
         setId(localStorage.getItem("id_film"));
+        setSynopsis(response.data.data.synopsis);
+        setRelease(response.data.data.release_date);
+        setDirector(response.data.data.director);
+        setPoster(response.data.data.poster);
+        setTrailer(response.data.data.trailer);
+        setCasts(response.data.data.characters);
+        setGenre(response.data.data.genre);
+      })
+  }
+
+  function getStars() {
+    axios.get(`http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/review/rating/movie/?movie_id=${id}`
+      ).then( ( response ) => {
+        console.log( "INI TUH RESPONSE STARS", response );
+        let star = response.data.data;
+        localStorage.setItem("stars", star)
+        setStars(star);
       })
   }
 
 
-  return (
-  
-        <div className="body">
-        <Banner />
-        <div className="bg-black">
-          <div className={classCss.category_container}>
-          <div className={classCss.category_btn_container}>
+  return (  
+      <div className="body">
+        <div style={{ backgroundImage: `linear-gradient(rgba(7, 7, 7, 0.6), rgba(7, 7, 7, 0.6)), url(${poster})`}}>
+          <div className="container text-left">
+          <div class="mb-4 text-white">
+            <div class="pt-5">
+              <h1 class="display-4 font-weight-bold mb-5">{title}</h1>
+              <div className={bannerCss.rate_reviews}>
+                <StarRatingComponent value={`${stars}`} emptyStarColor={"#fff"} />
+                <span>2200 reviews</span>
+              </div>
+              <p class="lead my-3">{synopsis}</p>
+            </div>
+            <div className={bannerCss.banner_btn_container} className="pb-5">
+              {/* <a href={`${trailer ? trailer : alert("Trailer Not Found!")}`} >
+              <button className={bannerCss.banner_btn}>Watch Trailer</button>
+              </a> */}
+              <button className={bannerCss.banner_btn} onClick={() => window.open(trailer ? trailer : alert("Trailer Not Found!"))} >Watch Trailer</button>
+              <button className={bannerCss.banner_btn}>Add to Watchlist</button>
+            </div>
+          </div>
+          </div>
+        </div>
+        <div className="bg-blac">
+          <div className="container text-left mt-4">
+          <div className="mt-3">
                 <button className={classCss.category_btn}>Overview</button>
               <Link to={`/review/${id}`}>
               <button className={classCss.category_btn}>Review</button>
               </Link>
             </div>
           </div>
-          <div className="container mt-4 mb-4"> 
+          <div className="container mt-5 mb-5"> 
             <div className="mb-5">
               <h2 className="decorated"><span>Synopsis</span></h2>
-              <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec pretium lobortis orci sed venenatis. Nam tempor ultrices consequat. Nulla ultrices non massa ut imperdiet. Proin a sodales orci, nec tincidunt libero. Aenean pellentesque, odio at pellentesque tincidunt, urna felis vulputate arcu, et blandit lacus risus id erat. Quisque sodales odio at sapien sagittis malesuada. Vivamus mollis suscipit risus, ut vulputate nisl dapibus vel. Curabitur ultricies facilisis elit, eget fringilla erat condimentum a. Nunc lacinia lorem nec magna ultrices consectetur. Nullam semper magna dapibus euismod egestas.<br /><br/>
-
-              Aenean tristique pellentesque diam, nec fringilla libero convallis sed. Nam sagittis mi id semper consequat. Proin id ante vel nibh tincidunt varius. Aliquam placerat erat eu aliquet blandit. Curabitur sed eros sed erat efficitur aliquam vitae in sapien. Duis eu neque pretium, imperdiet risus et, blandit mi. Sed pulvinar fringilla maximus. Proin mauris felis, fermentum id placerat in, placerat ut purus. Nam lobortis finibus sem quis pulvinar. </p>
+              <p>{synopsis}</p>
             </div>
             <div className="mt-5">
               <h2 class="decorated"><span>More Info</span></h2>
-              <p className="mt-3"><strong>Release Date:</strong></p>
-              <p><strong>Director:</strong></p>
-              <p><strong>Featured Song:</strong></p>
-              <p><strong>Budget:</strong></p>
+              <p className="mt-3"><strong>Genre: </strong>{genre}</p>
+              <p className="mt-3"><strong>Release Date: </strong>{release}</p>
+              <p><strong>Director: </strong>{director}</p>
+              <p><strong>Casts: </strong>{casts}</p>
             </div>
           </div>
         </div>
-        <FooterComp />     
-        </div>
+      <FooterComp />     
+      </div>
    
   );
 }
