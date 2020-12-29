@@ -27,24 +27,24 @@ const FilmCard = (props) => {
     <div className={classCss.card_container}>
       {movieArray.length > 0
         ? movieArray.map((data) => {
-            let title = data.title.split(":");
-            return (
-              <Link to={`/filmdetails/${data.title}`}>
-                <div key={data.id} className={classCss.card}>
-                  <img
-                    className={classCss.card_image}
-                    style={props.image_size}
-                    src={data.poster}
-                  />
-                  <div className={classCss.text_container}>
-                    <h5 className={classCss.title_text}>{title[0]}</h5>
-                    <h5 className={classCss.title_text}>{title[1]}</h5>
-                    <h6 className={classCss.category_text}>{data.genre}</h6>
-                  </div>
+          let title = data.title.split(":");
+          return (
+            <Link to={`/filmdetails/${data.title}`}>
+              <div key={data.id} className={classCss.card}>
+                <img
+                  className={classCss.card_image}
+                  style={props.image_size}
+                  src={data.poster}
+                />
+                <div className={classCss.text_container}>
+                  <h5 className={classCss.title_text}>{title[0]}</h5>
+                  <h5 className={classCss.title_text}>{title[1]}</h5>
+                  <h6 className={classCss.category_text}>{data.genre}</h6>
                 </div>
-              </Link>
-            );
-          })
+              </div>
+            </Link>
+          );
+        })
         : null}
     </div>
   );
