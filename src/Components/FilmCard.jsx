@@ -19,6 +19,7 @@ const FilmCard = (props) => {
         // setTitle(title);
         localStorage.setItem("movie", "GET");
         setMovie(response.data.posts);
+        localStorage.removeItem("id_film");
       });
   }
 
