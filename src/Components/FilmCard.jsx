@@ -13,24 +13,12 @@ const FilmCard = (props) => {
       .get(
         `http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/movie/${category}`
       )
-
-      .then( ( response ) => {
-        console.log( response, "GET MOVIE DATA SUCCESS" );
-        let title = response.data.posts;
-        console.log(response.data.posts, "INI LIST ISI TITLE");
-        // setTitle(title);
-        localStorage.setItem("movie", "GET");
-        setMovie(response.data.posts);
-        localStorage.removeItem("id_film");
-      })
-      
       .then((response) => {
         response.data.posts
           ? setMovie(response.data.posts)
           : setMovie(response.data.data);
       })
       .catch((err) => console.log(err));
-
   }
   console.log(movieArray);
 
@@ -40,7 +28,7 @@ const FilmCard = (props) => {
         ? movieArray.map((data) => {
             let title = data.title.split(":");
             return (
-              <Link to="/filmdetails">
+              <Link to={`/filmdetails/${data.title}`}>
                 <div key={data.id} className={classCss.card}>
                   <img
                     className={classCss.card_image}
