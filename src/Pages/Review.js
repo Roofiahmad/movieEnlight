@@ -3,13 +3,15 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import classCss from "../Components/FilmCategory.module.css";
 import classCss2 from "../Components/FilmCard.module.css";
 import StarRatingComponent from "react-star-rating-component";
-import { Form, Input } from "reactstrap";
+import { Form, Input, Button } from "reactstrap";
 import "./Review.css";
 import { Link, useParams } from "react-router-dom";
 import Banner from "../Components/Banner"
 import axios from "axios";
+// import { Button } from "bootstrap";
 
 export default function Review() {
+  const token = localStorage.getItem("token");
   const [review, setReview] = useState("");
   const [rating, setRating] = useState("");
   const [image, setImage] = useState("https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png")
@@ -20,6 +22,7 @@ export default function Review() {
   useEffect(() => {
     getReview()
     ratingChanged()
+    // handleCreateReview()
   },[]);
 
   const ratingChanged = (newRating) => {
@@ -37,10 +40,39 @@ export default function Review() {
         setImage(photo);
       }
   };
+
+  const handleCreateReview = async (e) => {
+    e.preventDefault();
+    console.log("REVIEW :", e.target.review.value);
+
+    const config = {
+        headers: {
+            'Authorization': 'Bearer ' + token, 
+        },
+    };
+
+    const sendDataReview = {
+        movie_id: id,
+        comment: e.target.review.value,
+        rating: rating
+    };
+
+    const response = await axios.post(
+      "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/review/create",
+      sendDataReview, config
+    );
+
+    console.log(response, "Update FullName Success");
+
+    localStorage.setItem("Status", "Name Updated");
+    alert("Review Posted");
+    window.location.reload();
+
+    // window.location.reload();
+  };
   
   console.log("INI TUH STATE REVIEW", review);
   console.log("TEST AMBIL RATING", rating);
-  const token = localStorage.getItem("token");
   const fullName = localStorage.getItem("userName");
 
     // console.log("INI TUH STATE REVIEW", review);
@@ -81,12 +113,14 @@ export default function Review() {
                     />
                   </div>
                   <div className="row">
-                    <Form>
+                    <Form onSubmit={(e) => handleCreateReview(e)}>
                       <Input
                         type="textarea"
                         name="review"
                         placeholder="Leave a Review"
                       ></Input>
+                      <br />
+                      <Button type="submit">Post</Button>
                     </Form>
                   </div>
                 </div>
@@ -105,7 +139,7 @@ export default function Review() {
                     <div className="row">
                       <img
                         className={classCss2.avaReview}
-                        src={`http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/img/${ripiu.user.image}`}
+                        src={`${ripiu.user.image}`}
                         height="70px"
                         width="70px"
                       ></img>
