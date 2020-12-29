@@ -52,6 +52,7 @@ export default function UpdateTrailer() {
       )
       .then((response) => {
         console.log(response);
+        alert("Trailer Updated Successfully");
         window.location.reload();
       })
       .catch((err) => console.log(err));

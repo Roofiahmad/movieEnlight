@@ -13,8 +13,9 @@ import axios from "axios";
 export default function Review() {
   const token = localStorage.getItem("token");
   const [review, setReview] = useState("");
-  const [rating, setRating] = useState("");
+  const [rating, setRating] = useState();
   const [image, setImage] = useState("https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png")
+  const [idfilm, setIdfilm] = useState(localStorage.getItem("id_film"));
 
   
   let { id } = useParams();
@@ -44,6 +45,7 @@ export default function Review() {
   const handleCreateReview = async (e) => {
     e.preventDefault();
     console.log("REVIEW :", e.target.review.value);
+    console.log("INI ID FILMNYA", id);
 
     const config = {
         headers: {
@@ -52,7 +54,7 @@ export default function Review() {
     };
 
     const sendDataReview = {
-        movie_id: id,
+        movie_id: `${id}`,
         comment: e.target.review.value,
         rating: rating
     };
