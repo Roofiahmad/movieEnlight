@@ -12,6 +12,8 @@ import axios from "axios";
 export default function Review() {
   const [review, setReview] = useState("");
   const [rating, setRating] = useState("");
+  const [image, setImage] = useState("https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png")
+
   
   let { id } = useParams();
   let title = localStorage.getItem("title_film");
@@ -30,13 +32,16 @@ export default function Review() {
         console.log( response.data.post, "INI TUH REVIEW" );
         setReview(response.data.post);
       });
+      const photo = localStorage.getItem("images");
+      if (photo !== "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/img/null") {
+        setImage(photo);
+      }
   };
   
   console.log("INI TUH STATE REVIEW", review);
   console.log("TEST AMBIL RATING", rating);
   const token = localStorage.getItem("token");
   const fullName = localStorage.getItem("userName");
-  const image = localStorage.getItem("images");
 
     // console.log("INI TUH STATE REVIEW", review);
   return (
