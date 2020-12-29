@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './PaginationComp.css';
-import { Link } from 'react-router-dom';
 import { Container } from 'reactstrap';
 
 class PaginationComp extends Component {
@@ -11,22 +10,22 @@ class PaginationComp extends Component {
       <nav aria-label="Page navigation">
         <ul className="pagination container w-25 justify-content-center">
           <li classNameName="page-item">
-            <Link style={{backgroundColor:"#FFB700"}} className="page-link text-black-50" href="#" aria-label="Previous">
+            <div style={{backgroundColor:"#FFB700"}} className="page-link text-black-50"  aria-label="Previous">
               <span aria-hidden="true">&larr;</span>
               <span className="sr-only">Previous</span>
-            </Link>
+            </div>
           </li>
-          <li className="page-item"><Link style={{backgroundColor:"#FFB700"}} className="page-link text-black-50" href="#">1</Link></li>
-          <li className="page-item"><Link style={{backgroundColor:"#FFB700"}} className="page-link text-black-50" href="#">2</Link></li>
-          <li className="page-item"><Link style={{backgroundColor:"#FFB700"}} className="page-link text-black-50" href="#">3</Link></li>
-          <li className="page-item"><Link style={{backgroundColor:"#FFB700"}} className="page-link text-black-50" href="#">4</Link></li>
-          <li className="page-item"><Link style={{backgroundColor:"#FFB700"}} className="page-link text-black-50" href="#">5</Link></li>
-          <li className="page-item"><Link style={{backgroundColor:"#FFB700"}} className="page-link text-black-50" href="#">6</Link></li>
+          <li className="page-item"><div id={1} onClick={(e)=> this.props.handlePagination(e.target.id)} style={{backgroundColor:"#FFB700"}} className="page-link text-black-50" >1</div></li>
+          <li className="page-item"><div id={2} onClick={(e)=>this.props.handlePagination(e.target.id)} style={{backgroundColor:"#FFB700"}} className="page-link text-black-50" >2</div></li>
+          <li className="page-item"><div id={3} onClick={(e)=> this.props.handlePagination(e.target.id)} style={{backgroundColor:"#FFB700"}} className="page-link text-black-50" >3</div></li>
+          <li className="page-item"><div id={4} onClick={(e)=> this.props.handlePagination(e.target.id)} style={{backgroundColor:"#FFB700"}} className="page-link text-black-50" >4</div></li>
+          <li className="page-item"><div id={5} onClick={(e)=> this.props.handlePagination(e.target.id)} style={{backgroundColor:"#FFB700"}} className="page-link text-black-50" >5</div></li>
+          <li className="page-item"><div id={6} onClick={(e)=> this.props.handlePagination(e.target.id)} style={{backgroundColor:"#FFB700"}} className="page-link text-black-50" >6</div></li>
           <li className="page-item">
-            <Link style={{backgroundColor:"#FFB700"}} className="page-link text-black-50" href="#" aria-label="Next">
+            <div style={{backgroundColor:"#FFB700"}} className="page-link text-black-50" aria-label="Next">
               <span aria-hidden="true">&rarr;</span>
               <span className="sr-only">Next</span>
-            </Link>
+            </div>
           </li>
         </ul>
       </nav>
