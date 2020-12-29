@@ -7,7 +7,10 @@ import axios from "axios";
 export default function FilmCategory() {
   const [filmCat, setFilmCat] = useState("?page=1&limit=30");
   let searched = localStorage.getItem("searched");
-  console.log(searched);
+  if (searched) {
+    setFilmCat(`findTitle?title=${searched}`);
+    localStorage.removeItem("searched");
+  }
 
   const image_size = { width: "200px", height: "300px", borderRadius: "10px" };
   const listCategory = [
