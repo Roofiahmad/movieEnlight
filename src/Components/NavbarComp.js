@@ -87,7 +87,7 @@ const NavbarComp = (props) => {
             let newName = localStorage.getItem("userName");
             setName(newName);
             let photo = localStorage.getItem("images");
-            if (photo !== "/img/null") {
+            if (photo !== "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/img/null") {
               let images = `${photo}`;
               setImage(images);
               console.log(localStorage.getItem("images"));
