@@ -29,7 +29,7 @@ function FilmDetails() {
   console.log("INI TUH TITLE", title);
   useEffect(() => {
     getMovie()
-    getStars()
+    // getStars()
   },[]);
   function getMovie() {
     axios.get(`http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/movie/get/${title}`
@@ -51,7 +51,7 @@ function FilmDetails() {
       })
   }
 
-  function getStars() {
+  // function getStars() {
     axios.get(`http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/review/rating/movie/?movie_id=${id}`
       ).then( ( response ) => {
         console.log( "INI TUH RESPONSE STARS", response );
@@ -59,7 +59,7 @@ function FilmDetails() {
         localStorage.setItem("stars", star)
         setStars(star);
       })
-  }
+  // }
 
 
   return (  
@@ -71,7 +71,7 @@ function FilmDetails() {
               <h1 class="display-4 font-weight-bold mb-5">{title}</h1>
               <div className={bannerCss.rate_reviews}>
                 <StarRatingComponent value={`${stars}`} emptyStarColor={"#fff"} />
-                <span>2200 reviews</span>
+                {/* <span>2200 reviews</span> */}
               </div>
               <p class="lead my-3">{synopsis}</p>
             </div>
