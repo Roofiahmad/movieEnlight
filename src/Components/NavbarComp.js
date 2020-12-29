@@ -104,32 +104,6 @@ const NavbarComp = (props) => {
     }
   });
 
-  // let config = {
-  //   headers: {
-  //     Authorization: "Bearer " + isLogged,
-  //   },
-  // };
-
-  // const dataLogin = Axios.get(
-  //   "https://cors-anywhere.herokuapp.com/" +
-  //     "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/user/profile",
-  //   config
-  // )
-  //   .then((response) => {
-  //     console.log(response);
-  //     image = response.data.data.image;
-  //     userName = response.data.data.fullName;
-  //     localStorage.setItem("userName", userName);
-  //     localStorage.setItem("image", image);
-  //   })
-  //   .catch();
-
-  // let image = localStorage.getItem("image");
-  // let userName = localStorage.getItem("userName");
-  // image = `http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969${image}`;
-  // console.log(userName);
-  // console.log(image);
-
   return (
     <div className="body">
       <Container>
