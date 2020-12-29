@@ -14,6 +14,7 @@ export default function AdminDashboard() {
   const [updateTrailer, setUpdateTrailer] = useState(false);
   const [updatePoster, setUpdatePoster] = useState(false);
   const [deleteMovie, setDeleteMovie] = useState(false);
+  const adminImage = localStorage.getItem('images')
 
   return (
     <Container className={classCss.admin_dashboard_container}>
@@ -21,8 +22,8 @@ export default function AdminDashboard() {
       <div className={classCss.admin_image_container}>
         <img
           className={classCss.admin_image}
-          src="https://i.pinimg.com/originals/4d/db/99/4ddb99836d52fba00f321c7764d698a8.jpg"
-          alt="user image"
+          src= {`${adminImage}`}
+          alt="admin image"
         />
       </div>
       <Button
