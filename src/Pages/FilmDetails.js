@@ -81,7 +81,7 @@ function FilmDetails() {
               </Link>
             </div>
           </div>
-          <div className="container mt-5 mb-4"> 
+          <div className="container mt-5 mb-5"> 
             <div className="mb-5">
               <h2 className="decorated"><span>Synopsis</span></h2>
               <p>{synopsis}</p>
