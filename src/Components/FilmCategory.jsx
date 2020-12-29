@@ -3,9 +3,13 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import classCss from "../Components/FilmCategory.module.css";
 import FilmCard from "./FilmCard";
 import axios from "axios";
+import PaginationComp from "../Components/PaginationComp";
 
 export default function FilmCategory() {
-  const [filmCat, setFilmCat] = useState("?page=1&limit=30");
+  const [limit, setLimit] = useState('10')
+  const[page,setPage] = useState('1')
+  const[cat,setCat] = useState('All')
+  const [filmCat, setFilmCat] = useState(`?page=${page}&limit=${limit}`);
   let searched = localStorage.getItem("searched");
   if (searched) {
     setFilmCat(`findTitle?title=${searched}`);
@@ -23,17 +27,26 @@ export default function FilmCategory() {
   ];
 
   const handleButtonCategory = (inputCat) => {
+    setCat(inputCat)
     switch (inputCat) {
       case "Anime":
       case "Action":
       case "Adventure":
       case "Science Fiction":
       case "Comedy":
-        setFilmCat(`findGenre?genre=${inputCat}&page=1&limit=30`);
+      setFilmCat(`findGenre?genre=${inputCat}&page=${page}&limit=${limit}`);
         break;
       default:
-        setFilmCat("?page=1&limit=30");
+        setFilmCat(`?page=${page}&limit=${limit}`);
     }
+  };
+
+  const handlePagination = (page) => {
+    setPage(page);
+    page >1&& cat !== 'All' ?  setFilmCat(`findGenre?genre=${cat}&page=${page}&limit=${limit}`)
+    :setFilmCat(`?page=${page}&limit=${limit}`)
+    setPage('1');
+
   };
 
   return (
@@ -54,6 +67,7 @@ export default function FilmCategory() {
         ))}
       </div>
       <FilmCard category={filmCat} image_size={image_size} />
+      <PaginationComp handlePagination={handlePagination} />
     </div>
   );
 }

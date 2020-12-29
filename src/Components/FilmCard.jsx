@@ -9,6 +9,7 @@ const FilmCard = (props) => {
     getData();
   }, [props]);
   function getData(category = props.category) {
+    console.log(category)
     axios
       .get(
         `http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/movie/${category}`
