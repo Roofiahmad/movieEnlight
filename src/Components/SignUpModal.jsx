@@ -18,13 +18,14 @@ export default function SignUpModal(props) {
     e.preventDefault();
     console.log("fullname :", e.target.fullName.value);
     console.log("email :", e.target.email.value);
-    // console.log("password :", e.target.password.value);
+    console.log("password :", e.target.password.value);
+    console.log("password :", e.target.passwordConfirmation.value);
 
     const sendaDataSignUp = {
-      fullName: e.target.fullname.value,
+      fullName: e.target.fullName.value,
       email: e.target.email.value,
       password: e.target.password.value,
-      passwordConfirmation: e.target.confirmpassword.value,
+      passwordConfirmation: e.target.passwordConfirmation.value,
     };
 
     const response = await axios.post(
@@ -35,6 +36,7 @@ export default function SignUpModal(props) {
     console.log(response, "signup success");
 
     localStorage.setItem("token", response.data.token);
+    window.location.reload();
     // setTimeout(function() { window.location.reload(); }, 3000);
   };
 
@@ -68,7 +70,7 @@ export default function SignUpModal(props) {
           </Container>
           <Container>
             <hr />
-            <Form onSubmit={handleSubmitSignup}>
+            <Form onSubmit={(e) => handleSubmitSignup(e)}>
               <Label>Full Name</Label>
               <Input name="fullName" type="text" placeholder=""></Input>
               <br />

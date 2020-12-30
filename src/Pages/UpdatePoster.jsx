@@ -11,22 +11,17 @@ export default class UpdateTrailer extends Component {
   };
 
   handleSubmit = (e) => {
-    console.log(e.target.title);
+    console.log(this.state.poster);
     e.preventDefault();
     let title = e.target.title.value;
     console.log(e.target.title.value);
     let header = {
       Authorization: "Bearer " + this.state.token,
     };
-    let file = this.state.image;
     let formData = new FormData();
-    formData.append("poster", file);
-    console.log(formData);
-
+    formData.append("poster",this.state.poster, this.state.poster.name);
     axios
-      .put(
-        "https://cors-anywhere.herokuapp.com/" +
-          `http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/movie/update/poster/${title}`,
+      .put(`http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/movie/update/poster/${title}`,
         formData,
         {
           headers: header,
@@ -48,6 +43,7 @@ export default class UpdateTrailer extends Component {
   };
 
   render() {
+    console.log(this.state.image)
     return (
       <Form
         className="form "
