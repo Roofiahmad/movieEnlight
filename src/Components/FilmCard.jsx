@@ -27,7 +27,7 @@ const FilmCard = (props) => {
         ? movieArray.map((data) => {
             let title = data.title.split(":");
             return (
-              <Link to={`/filmdetails/${data.title}`}>
+              <Link to={`/filmdetails/${data.id}`}>
                 <div key={data.id} className={classCss.card}>
                   <img className={classCss.card_image} src={data.poster} />
                   <div className={classCss.text_container}>

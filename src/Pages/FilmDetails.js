@@ -11,7 +11,7 @@ import Overview from "./Overview";
 import Review from "./Review";
 
 function FilmDetails() {
-  let { title } = useParams();
+  let { filmId } = useParams();
   const [id, setId] = useState("");
   const [synopsis, setSynopsis] = useState("");
   const [release, setRelease] = useState("");
@@ -42,7 +42,7 @@ function FilmDetails() {
   function getMovie() {
     axios
       .get(
-        `http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/movie/get/${title}`
+        `http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/movie/get/${filmId}`
       )
       .then((response) => {
         localStorage.setItem("id_film", response.data.data.movieId);
