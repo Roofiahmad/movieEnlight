@@ -11,7 +11,8 @@ import Overview from "./Overview";
 import Review from "./Review";
 
 function FilmDetails() {
-  let { filmId } = useParams();
+  let filmId = useParams().title;
+  let title = localStorage.getItem("title_film");
   const [id, setId] = useState("");
   const [synopsis, setSynopsis] = useState("");
   const [release, setRelease] = useState("");
@@ -57,7 +58,6 @@ function FilmDetails() {
         setGenre(response.data.data.genre);
       });
   }
-
   axios
     .get(
       `http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/review/rating/movie/?movie_id=${id}`

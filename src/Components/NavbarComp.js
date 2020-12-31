@@ -24,8 +24,10 @@ import SignUpModal from "./SignUpModal";
 import axios from "axios";
 
 const NavbarComp = (props) => {
-  const token = localStorage.getItem("access");
-  const isLogged = localStorage.getItem("token");
+  const { buttonLabel, className } = props;
+  const [image, setImage] = useState(localStorage.getItem("images"));
+  const [userName, setName] = useState(localStorage.getItem("userName"));
+  const token = localStorage.getItem("token");
   let titleSearched = "";
   const role = localStorage.getItem("role");
   let regex = /admin/;
@@ -50,47 +52,33 @@ const NavbarComp = (props) => {
     setModals(!modals);
   };
 
-  const { buttonLabel, className } = props;
-
-  let image = localStorage.getItem("images");
-
-  let [userName, setName] = useState("No Name");
-
   useEffect(async () => {
-    if (isLogged) {
+    if (token) {
       let config = {
         headers: {
-          Authorization: "Bearer " + isLogged,
+          Authorization: "Bearer " + token,
         },
       };
-
       Axios.get(
         "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/user/profile",
         config
       )
         .then((response) => {
-          let images = response.data.data.image;
-          userName = response.data.data.fullName;
+          {
+            response.data.data.image ==
+            "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/img/null"
+              ? setImage(
+                  "https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png"
+                )
+              : setImage(response.data.data.image);
+          }
+          setName(response.data.data.fullName);
           let email = response.data.data.email;
           localStorage.setItem("userName", userName);
-          localStorage.setItem("images", images);
           localStorage.setItem("email", email);
           localStorage.setItem("access", true);
           localStorage.setItem("role", response.data.data.role);
-
-          if (localStorage.getItem("images")) {
-            let newName = localStorage.getItem("userName");
-            setName(newName);
-            if (
-              localStorage.getItem("images") ==
-              "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/img/null"
-            ) {
-              localStorage.setItem(
-                "images",
-                "https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png"
-              );
-            }
-          }
+          localStorage.setItem("images", image);
         })
         .catch((err) => console.log(err));
     }
@@ -145,7 +133,16 @@ const NavbarComp = (props) => {
               {token ? (
                 <UncontrolledDropdown nav inNavbar>
                   <DropdownToggle nav>
-                    <img src={image} className="ava" alt="user ava"></img>
+                    <img
+                      src={
+                        image ==
+                        "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/img/null"
+                          ? "https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png"
+                          : image
+                      }
+                      className="ava"
+                      alt="user ava"
+                    ></img>
                   </DropdownToggle>
                   <DropdownMenu right>
                     <DropdownItem>

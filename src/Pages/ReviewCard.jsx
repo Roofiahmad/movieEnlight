@@ -13,7 +13,8 @@ export default function ReviewCard(props) {
               src={
                 `${ripiu.user.image}` ==
                 "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/img/null"
-                  ? (ripiu.user.image = localStorage.getItem("images"))
+                  ? (ripiu.user.image =
+                      "https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png")
                   : ripiu.user.image
               }
               height="70px"
