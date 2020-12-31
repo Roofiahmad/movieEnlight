@@ -72,7 +72,8 @@ function FilmDetails() {
     <div className="body">
       <div
         style={{
-          backgroundImage: `linear-gradient(rgba(7, 7, 7, 0.6), rgba(7, 7, 7, 0.6)), url(${poster})`,
+          backgroundImage: `linear-gradient(rgba(7, 7, 7, 0.5), rgba(7, 7, 7, 0.5)), url(${poster})`,
+          backgroundSize: "cover",
         }}
       >
         <div className="container text-left">
