@@ -1,9 +1,15 @@
-.display-4 {
-  font-size: 2.5rem;
+.title_text {
+  font-size: 4vw;
 }
-
-@media (min-width: 768px) {
-  .display-4 {
-    font-size: 3rem;
+.synopsis_text {
+  font-size: 2vw;
+}
+@media (max-width: 700px) {
+  .title_text {
+    font-size: 7vw;
+  }
+  .synopsis_text {
+    font-size: 3vw;
+    font-weight: bold;
   }
 }

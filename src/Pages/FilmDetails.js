@@ -78,14 +78,14 @@ function FilmDetails() {
         <div className="container text-left">
           <div class="mb-4 text-white">
             <div class="pt-5">
-              <h1 class="display-4 font-weight-bold mb-5">{title}</h1>
+              <h1 class=" title_text font-weight-bold mb-5">{title}</h1>
               <div className={bannerCss.rate_reviews}>
                 <StarRatingComponent
                   value={`${stars}`}
                   emptyStarColor={"#fff"}
                 />
               </div>
-              <p class="lead my-3">{synopsis}</p>
+              <p class="synopsis_text">{synopsis}</p>
             </div>
             <div className={bannerCss.banner_btn_container} className="pb-5">
               <button
