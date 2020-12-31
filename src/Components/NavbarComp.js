@@ -52,9 +52,7 @@ const NavbarComp = (props) => {
 
   const { buttonLabel, className } = props;
 
-  let [image, setImage] = useState(
-    "https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png"
-  );
+  let image = localStorage.getItem("images");
 
   let [userName, setName] = useState("No Name");
 
