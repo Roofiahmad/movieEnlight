@@ -9,7 +9,6 @@ const FilmCard = (props) => {
     getData();
   }, [props]);
   function getData(category = props.category) {
-    console.log(category)
     axios
       .get(
         `http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/movie/${category}`
@@ -21,30 +20,25 @@ const FilmCard = (props) => {
       })
       .catch((err) => console.log(err));
   }
-  console.log(movieArray);
 
   return (
     <div className={classCss.card_container}>
       {movieArray.length > 0
         ? movieArray.map((data) => {
-          let title = data.title.split(":");
-          return (
-            <Link to={`/filmdetails/${data.title}`}>
-              <div key={data.id} className={classCss.card}>
-                <img
-                  className={classCss.card_image}
-                  style={props.image_size}
-                  src={data.poster}
-                />
-                <div className={classCss.text_container}>
-                  <h5 className={classCss.title_text}>{title[0]}</h5>
-                  <h5 className={classCss.title_text}>{title[1]}</h5>
-                  <h6 className={classCss.category_text}>{data.genre}</h6>
+            let title = data.title.split(":");
+            return (
+              <Link to={`/filmdetails/${data.title}`}>
+                <div key={data.id} className={classCss.card}>
+                  <img className={classCss.card_image} src={data.poster} />
+                  <div className={classCss.text_container}>
+                    <h5 className={classCss.title_text}>{title[0]}</h5>
+                    <h5 className={classCss.title_text}>{title[1]}</h5>
+                    <h6 className={classCss.category_text}>{data.genre}</h6>
+                  </div>
                 </div>
-              </div>
-            </Link>
-          );
-        })
+              </Link>
+            );
+          })
         : null}
     </div>
   );

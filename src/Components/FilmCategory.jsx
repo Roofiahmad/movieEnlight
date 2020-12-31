@@ -2,13 +2,12 @@ import { React, useState, useEffect } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import classCss from "../Components/FilmCategory.module.css";
 import FilmCard from "./FilmCard";
-import axios from "axios";
 import PaginationComp from "../Components/PaginationComp";
 
 export default function FilmCategory() {
-  const [limit, setLimit] = useState('10')
-  const[page,setPage] = useState('1')
-  const[cat,setCat] = useState('All')
+  const [limit, setLimit] = useState("10");
+  const [page, setPage] = useState("1");
+  const [cat, setCat] = useState("All");
   const [filmCat, setFilmCat] = useState(`?page=${page}&limit=${limit}`);
   let searched = localStorage.getItem("searched");
   if (searched) {
@@ -18,10 +17,9 @@ export default function FilmCategory() {
 
   if (searched) {
     setFilmCat(`findTitle?title=${searched}`);
-    localStorage.removeItem("searched"); 
-  } 
+    localStorage.removeItem("searched");
+  }
 
-  const image_size = { width: "200px", height: "300px", borderRadius: "10px" };
   const listCategory = [
     "All",
     "Anime",
@@ -32,14 +30,14 @@ export default function FilmCategory() {
   ];
 
   const handleButtonCategory = (inputCat) => {
-    setCat(inputCat)
+    setCat(inputCat);
     switch (inputCat) {
       case "Anime":
       case "Action":
       case "Adventure":
       case "Science Fiction":
       case "Comedy":
-      setFilmCat(`findGenre?genre=${inputCat}&page=${page}&limit=${limit}`);
+        setFilmCat(`findGenre?genre=${inputCat}&page=${page}&limit=${limit}`);
         break;
       default:
         setFilmCat(`?page=${page}&limit=${limit}`);
@@ -48,10 +46,10 @@ export default function FilmCategory() {
 
   const handlePagination = (page) => {
     setPage(page);
-    page >1&& cat !== 'All' ?  setFilmCat(`findGenre?genre=${cat}&page=${page}&limit=${limit}`)
-    :setFilmCat(`?page=${page}&limit=${limit}`)
-    setPage('1');
-
+    page > 1 && cat !== "All"
+      ? setFilmCat(`findGenre?genre=${cat}&page=${page}&limit=${limit}`)
+      : setFilmCat(`?page=${page}&limit=${limit}`);
+    setPage("1");
   };
 
   return (
@@ -71,7 +69,7 @@ export default function FilmCategory() {
           </button>
         ))}
       </div>
-      <FilmCard category={filmCat} image_size={image_size} />
+      <FilmCard category={filmCat} />
       <PaginationComp handlePagination={handlePagination} />
     </div>
   );

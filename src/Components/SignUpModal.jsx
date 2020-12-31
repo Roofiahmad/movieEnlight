@@ -1,5 +1,4 @@
 import React from "react";
-import { Redirect } from "react-router-dom";
 import {
   Input,
   Container,
@@ -12,8 +11,6 @@ import {
 import axios from "axios";
 
 export default function SignUpModal(props) {
-  const isLogged = localStorage.getItem("token");
-
   const handleSubmitSignup = async (e) => {
     e.preventDefault();
     console.log("fullname :", e.target.fullName.value);
@@ -37,14 +34,10 @@ export default function SignUpModal(props) {
 
     localStorage.setItem("token", response.data.token);
     window.location.reload();
-    // setTimeout(function() { window.location.reload(); }, 3000);
   };
-
-  
 
   return (
     <div>
-      {isLogged ? <Redirect to="/" /> : null}
       <Modal
         isOpen={props.modal}
         toggleSignup={props.toggleSignup}

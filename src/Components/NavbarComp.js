@@ -26,7 +26,6 @@ import axios from "axios";
 const NavbarComp = (props) => {
   const token = localStorage.getItem("access");
   const isLogged = localStorage.getItem("token");
-  console.log("INI TUH TOKEN", isLogged);
   let titleSearched = "";
   const role = localStorage.getItem("role");
   let regex = /admin/;
@@ -56,8 +55,7 @@ const NavbarComp = (props) => {
   let [image, setImage] = useState(
     "https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png"
   );
-  // let userName = localStorage.getItem("userName");
-  //   console.log( userName )
+
   let [userName, setName] = useState("No Name");
 
   useEffect(async () => {
@@ -73,30 +71,26 @@ const NavbarComp = (props) => {
         config
       )
         .then((response) => {
-          console.log(response);
           let images = response.data.data.image;
           userName = response.data.data.fullName;
           let email = response.data.data.email;
           localStorage.setItem("userName", userName);
-          localStorage.setItem("email", email);
           localStorage.setItem("images", images);
+          localStorage.setItem("email", email);
           localStorage.setItem("access", true);
           localStorage.setItem("role", response.data.data.role);
-          // window.location.reload();
+
           if (localStorage.getItem("images")) {
             let newName = localStorage.getItem("userName");
             setName(newName);
-            let photo = localStorage.getItem("images");
-            if (photo !== "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/img/null") {
-              let images = `${photo}`;
-              setImage(images);
-              console.log(localStorage.getItem("images"));
-              console.log("render!");
-            } else {
-              let images =
-                "https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png";
-              setImage(images);
-              console.log(localStorage.getItem("images"));
+            if (
+              localStorage.getItem("images") ==
+              "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/img/null"
+            ) {
+              localStorage.setItem(
+                "images",
+                "https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png"
+              );
             }
           }
         })
@@ -118,10 +112,10 @@ const NavbarComp = (props) => {
                 ></img>
               </span>{" "}
               <img
-                  alt="logo"
-                  src="https://i.ibb.co/SsB8dMk/Logo-Makr-1-RD36w-1.png"
-                  width="100px"
-                ></img>
+                alt="logo"
+                src="https://i.ibb.co/SsB8dMk/Logo-Makr-1-RD36w-1.png"
+                width="100px"
+              ></img>
             </NavbarBrand>
           </Link>
           <NavbarToggler style={{ color: "#FFB700" }} onClick={toggle} />

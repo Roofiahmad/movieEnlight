@@ -18,23 +18,29 @@
   gap: 10px;
 }
 
+.card_image {
+  width: 200px;
+  height: 300px;
+  border-radius: 10px;
+}
+
 .avaReview {
   border-radius: 10px;
 }
 
 @media (max-width: 480px) {
   .card_image {
-    width: 160px;
-    height: 240px;
+    width: 40vw;
+    height: 60vw;
     border-radius: 10px;
   }
   .card_container {
     position: relative;
-    left: 54vw;
+    left: 50vw;
     transform: translateX(-50%);
     display: flex;
     flex-wrap: wrap;
-    column-gap: 20px;
+    column-gap: 10px;
     row-gap: 0;
   }
 }

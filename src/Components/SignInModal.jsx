@@ -1,7 +1,5 @@
 import React from "react";
 import axios from "axios";
-import { createBrowserHistory } from "history";
-import { Router, Route, Link, browserHistory } from "react-router";
 import {
   Input,
   Container,
@@ -13,26 +11,23 @@ import {
 } from "reactstrap";
 
 export default function SignInModal(props) {
-  const handleSubmitLogin = async (e) => {
+  const handleSubmitLogin = (e) => {
     e.preventDefault();
-    console.log("email :", e.target.email.value);
-    console.log("password :", e.target.password.value);
-
     const sendaDataLogin = {
       email: e.target.email.value,
       password: e.target.password.value,
     };
 
-    const response = await axios.post(
-      "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/user/login",
-      sendaDataLogin
-    );
-
-    console.log(response, "login success");
-
-    localStorage.setItem("token", response.data.token);
-
-    window.location.reload();
+    axios
+      .post(
+        "http://ec2-13-229-61-46.ap-southeast-1.compute.amazonaws.com:6969/user/login",
+        sendaDataLogin
+      )
+      .then((res) => {
+        localStorage.setItem("token", res.data.token);
+        window.location.reload();
+      })
+      .catch((err) => console.log(err));
   };
 
   return (
